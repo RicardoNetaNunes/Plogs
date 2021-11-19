@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const UserModel = require('../models/User.model')
+const User = require('../models/User.model')
 const bcrypt = require('bcryptjs');
 
 // Handles GET requests to /signup and shows a form
@@ -14,7 +14,7 @@ router.post('/signup', (req, res, next) => {
     // Encryption
     let salt = bcrypt.genSaltSync(12);
     let hash = bcrypt.hashSync(password, salt);
-    UserModel.create({username, password: hash})
+    User.create({username, password: hash})
       .then(() => {
           res.redirect('/')
       })
@@ -39,7 +39,7 @@ router.post('/login', (req, res, next) => {
       res.render('auth/login.hbs', {error: 'Please enter all fields'});
       }
     // Find the user username
-    UserModel.find({username})
+    User.find({username})
       .then((usernameResponse) => {
           // if the username exists check the password
           if (usernameResponse.length) {
