@@ -77,24 +77,14 @@ const checkLogIn = (req, res, next) => {
     }
 }
 
-router.get('/private', checkLogIn, (req, res, next) => {
+router.get('/profile', checkLogIn, (req, res, next) => {
     let myUserInfo = req.session.myProperty  
     if (myUserInfo) {
-      res.render('auth/private.hbs')
+      res.render('auth/profile.hbs')
     }
     else {
       res.redirect('/login')
     }
-})
-
-router.get('/main', checkLogIn, (req, res, next) => {
-  let myUserInfo = req.session.myProperty  
-  if (myUserInfo) {
-    res.render('auth/main.hbs')
-  }
-  else {
-    res.redirect('/login')
-  }
 })
 
 module.exports = router;
