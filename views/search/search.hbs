@@ -6,16 +6,71 @@
 <div  id="mapid"></div>
 
 <script>
-	const map = L.map('mapid').setView([38.7117, -9.1238], 4);
-
-	L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-	attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-	}).addTo(map);
-
-	L.marker([38.7117, -9.1238]).addTo(map)
-	.bindPopup('<a href="http://localhost:3000">Ironhack</a><br> Dog friendly bootcamp.')
-
+	const map = L.map('mapid').setView([47.3769, -8.5417], 4);
 	
+//leaflet map
+	var OpenStreetMap_HOT = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+	maxZoom: 19,
+	attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Tiles style by <a href="https://www.hotosm.org/" target="_blank">Humanitarian OpenStreetMap Team</a> hosted by <a href="https://openstreetmap.fr/" target="_blank">OpenStreetMap France</a>'
+});
+OpenStreetMap_HOT.addTo(map);
+
+//Google SatMap
+var googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{
+    maxZoom: 20,
+    subdomains:['mt0','mt1','mt2','mt3']
+});
+//googleSat.addTo(map)
+
+//Google StreetMap	
+var googleStreets = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',{
+    maxZoom: 20,
+    subdomains:['mt0','mt1','mt2','mt3']
+});
+googleStreets.addTo(map)
+
+
+var myIcon = L.icon({
+    iconUrl: '/images/42578_adobespark.png',
+    iconSize: [50, 50]
+});
+
+
+
+let normalMarker =  L.marker([40.3925, -3.6984]).addTo(map)
+let normalPopUp= normalMarker.bindPopup('<a href="http://localhost:3000/places">Ironhack</a><br> Dog friendly bootcamp.'+ normalMarker.getLatLng())
+normalPopUp.addTo(map)
+
+
+let beachMarker = L.marker([39.7117, -8.1238], {icon: myIcon, draggable:true }).addTo(map)
+let popup = beachMarker.bindPopup('<a href="http://localhost:3000/places">Dog Park</a><br> Dog friendly.' + beachMarker.getLatLng())
+popup.addTo(map);
+
+//console.log(beachMarker.toGeoJSON());
+
+let ironBootcamps = L.geoJSON(ironhack).addTo(map);
+let ironPopUp= ironBootcamps.bindPopup('<a href="http://localhost:3000/places">Ironhack</a><br> Dog friendly bootcamp.')
+ironPopUp.addTo(map)
+
+var baseLayers = {
+    "StreetMaps": googleStreets,
+    "SatMaps": googleSat
+};
+
+var overlays = {
+    "Marker": normalMarker,
+	"Beach": beachMarker,
+	"Ironhack": ironBootcamps
+
+};
+
+L.control.layers(baseLayers, overlays).addTo(map);
+
+
+
+
+
+
 </script>
 
 
