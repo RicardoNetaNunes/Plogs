@@ -49,7 +49,7 @@ router.post('/login', (req, res, next) => {
               let isMatching = bcrypt.compareSync(password, userObj.password);
               if (isMatching) {
                   req.session.myProperty = userObj
-                  res.redirect('/main')
+                  res.redirect('/places/add')
               }
               else {
                 res.render('auth/login.hbs', {error: 'Password not matching'})
@@ -68,23 +68,22 @@ router.post('/login', (req, res, next) => {
 
 //Our custom middleware that checks if the user is loggedin
 const checkLogIn = (req, res, next) => {
-    if (req.session.myProperty) {
-        //invokes the next available function
-        next()
-    }
-    else {
-        res.redirect('/login')
-    }
+  if (req.session.myProperty) {
+      //invokes the next available function
+      next()
+  }
+  else {
+      res.redirect('/login')
+  }
 }
 
 router.get('/profile', checkLogIn, (req, res, next) => {
-    let myUserInfo = req.session.myProperty  
-    if (myUserInfo) {
-      res.render('auth/profile.hbs')
-    }
-    else {
-      res.redirect('/login')
-    }
+  let myUserInfo = req.session.myProperty  
+  if (myUserInfo) {
+    res.render('auth/profile.hbs')
+  }
+  else {
+    res.redirect('/login')
+  }
 })
-
 module.exports = router;
