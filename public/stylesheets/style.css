@@ -11,3 +11,7 @@ a {
 h1 {
   color: 15px;
 }
+
+#mapid { 
+	height: 380px; 
+}

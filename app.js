@@ -46,6 +46,9 @@ app.use(session({
 const index = require("./routes/index");
 app.use("/", index);
 
+const searchRoutes = require('./routes/search.routes')
+app.use("/", searchRoutes);
+
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);
 
