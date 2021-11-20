@@ -12,7 +12,7 @@ const userSchema = new Schema({
   },
   email: {
     type: String,
-    //required: true (have to take it off, bc if true the user has to enter the email when logging in and we just ask for the username and password)
+    required: false /* (had to make it false, bc if true the user has to enter the email when logging in and we just ask for the username and password) */
   },
 
   placesAdded: [{ type: Schema.Types.ObjectId, ref: 'place' }],

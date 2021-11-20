@@ -10,7 +10,7 @@ router.get('/signup', (req, res, next) => {
 // Handles POST requests to /signup 
 router.post('/signup', (req, res, next) => {
   const {username, email, password} = req.body
- console.log(username, email, password)
+  console.log(username, email, password)
 
     // Encryption
     let salt = bcrypt.genSaltSync(10);
