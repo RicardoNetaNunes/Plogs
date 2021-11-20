@@ -12,9 +12,10 @@ body {
 }
 .buttonBox {
   margin-top: 60px;
-
 }
-
+.back{
+  margin-top: -50px;
+}
 .myButton {
   color: white;
   background-color: #5b4641;
@@ -45,7 +46,12 @@ body {
 }
 
 h1 {
-  color: 15px;
+  color:#5b4641;
+  text-align: center;
+}
+h2 {
+  color:#5b4641;
+  text-align: center;
 }
 
 #mapid { 
@@ -61,12 +67,7 @@ footer {
   background-color: #5b4641;
   color:white;
   text-align: center;
-  
 }
-/* .footerbuttons {
-  display: flex;
-  justify-content: center;
-} */
 a:hover {
   color: white;
 }
