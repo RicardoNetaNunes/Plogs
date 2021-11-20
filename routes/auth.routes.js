@@ -34,9 +34,8 @@ router.get('/login', (req, res, next) => {
 router.post('/login', (req, res, next) => {
     const {username, password} = req.body
     //Validation
-    //validate if the username and the password exist
+    //validate if the username and the password were entered
     if (username == '' || password == '') {
-      //throw error
       res.render('auth/login.hbs', {error: 'Please enter all fields'});
       }
     // Find the user username
@@ -53,7 +52,7 @@ router.post('/login', (req, res, next) => {
                   res.redirect('/places/add')
               }
               else {
-                res.render('auth/login.hbs', {error: 'Wrong password! Try again'})
+                res.render('auth/login.hbs', {error: 'Wrong password. Try again'})
                 return;
               }
           }
