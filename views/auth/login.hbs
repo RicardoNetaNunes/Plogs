@@ -1,22 +1,24 @@
 <a href="/" class="bi bi-arrow-left"></a>
 
+<form class="dropdown-menu p-4"></form>
 <form action="/login" method="POST">
-<form class="dropdown-menu p-4">
-  <div class="mb-3">
-    <input type="text" class="form-control" id="exampleDropdownFormEmail2" placeholder="Insert your username">
-    <label for="exampleDropdownFormEmail2" class="form-label">Username</label>
+    <div class="mb-3">
+    <input name="username" type="text" class="form-control" placeholder="Enter your username">
+    <label for="exampleDropdownFormPassword2" class="form-label">Username</label>
   </div>
   <div class="mb-3">
-    <input type="password" class="form-control" id="exampleDropdownFormPassword2" placeholder="Insert your password">
-    <label for="exampleDropdownFormPassword2" class="form-label">Password</label>
+  <input name="password" type="password" class="form-control"  placeholder="Enter your password" >
+  <label name="password"  class="form-label">Password</label>
   </div>
-  <button type="submit" class="btn {{!-- btn-primary --}} myButton">Log in</button>
-
+  <button type="submit" class="btn myButton">Log in</button>
+</form>
+</form>
+<br>
   <div class="dropdown-divider"></div>
   <a class="dropdown-item myDropdown" href="/signup">New around here? Sign up</a>
   {{!-- <a class="dropdown-item" href="#">Forgot password?</a> --}}
 </div>
-</form>
+
 <br>
 {{#if error}}
 <p class="error">Ups! {{error}}</p>
