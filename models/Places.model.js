@@ -20,10 +20,6 @@ const placeSchema = new Schema({
         type: String,
         required: true
     },
-    rate: {
-        type: Number,
-        required: false
-    },
     authorId: {
         ref: "user",
         type: Schema.Types.ObjectId

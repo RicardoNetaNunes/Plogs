@@ -1,3 +1,4 @@
+
 <a href="/" class="bi bi-arrow-left"></a>
 
 
@@ -9,6 +10,7 @@
 <br>
 <script src="/app.js"></script>
 <div  id="mapid"></div>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
  <br>
  <div class="leaflet-control coordinates"></div>
 <script>
@@ -21,6 +23,14 @@
 	attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Tiles style by <a href="https://www.hotosm.org/" target="_blank">Humanitarian OpenStreetMap Team</a> hosted by <a href="https://openstreetmap.fr/" target="_blank">OpenStreetMap France</a>'
 });
 OpenStreetMap_HOT.addTo(map);
+
+//maptiler street
+
+var maptillerStreet = L.tileLayer('https://api.maptiler.com/maps/streets/{z}/{x}/{y}.png?key=3l8GFPZwCEHEiHYwjZnb', {
+	maxZoom: 19,
+	attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
+});
+//maptillerStreet.addTo(map);
 
 //Google SatMap
 var googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{
@@ -55,7 +65,9 @@ popup.addTo(map);
 
 var baseLayers = {
     "StreetMaps": googleStreets,
-    "SatMaps": googleSat	
+    "SatMaps": googleSat,
+    "StreetTiller": maptillerStreet
+    
 };
 
 var overlays = {
@@ -77,6 +89,35 @@ L.control.layers(baseLayers, overlays).addTo(map);
 
 
 
+
+<script id="select-location">
+  
+map.on('click', function(e) {
+	document.getElementsByClassName('coordinates')[0].innerHTML = 'lat: ' + e.latlng.lat +' --- ' + 'long: ' + e.latlng.lng;
+    console.log('lat: ' + e.latlng.lat, 'long: ' + e.latlng.lng);
+} );
+
+
+
+map.on('click', function(e) {
+  console.log(e.latlng.lat,e.latlng.lng);
+
+  L.marker([e.latlng.lat,e.latlng.lng]).addTo(map);
+  
+   
+});
+
+
+</script>
+<br>
+<!--
+
+    <label class="form-label" >Latitude</label>
+    <input class="form-control" type="text" name="latitude">
+    <br>
+    <label class="form-label" >Longitude</label>
+    <input class="form-control" type="text" name="longitude">
+    <br>
 <form method="POST" action="/places/add">
   <div class="mb-3">
     <select class="form-select" aria-label="type">
@@ -90,23 +131,6 @@ L.control.layers(baseLayers, overlays).addTo(map);
   <option value="park">Park</option>
 </select>
 <p>Zoom on map and select the place you want to add.</p>
-<script>
-  /*  
-map.on('click', function(e) {
-	document.getElementsByClassName('coordinates')[0].innerHTML = 'lat: ' + e.latlng.lat +' --- ' + 'long: ' + e.latlng.lng;
-    console.log('lat: ' + e.latlng.lat, 'long: ' + e.latlng.lng);
-} );
-*/
-
-
-map.on('click', function(e) {
-  console.log(e.latlng.lat,e.latlng.lng);
-
-  L.marker([e.latlng.lat,e.latlng.lng]).addTo(map);
-  
-    
-});
-</script>
 
     <br>
     <div class="input-group">
@@ -115,6 +139,30 @@ map.on('click', function(e) {
 </div>
     <br>
     <button class="btn btn-primary" type="submit">Add Place</button>
+  </div>
+</form>
+</div>
+</div>
+-->
+
+<div class="create">
+<div class="createForm">
+  <h2>Add a New Dog Friendly Place</h2>
+<form method="POST" action="/search">
+  <div class="mb-3">
+    <label class="form-label" >Latitude</label>
+    <input name="latitude">
+    <br>
+    <label class="form-label" >Longitude</label>
+    <input name="longitude">
+    <br>
+    <label class="form-label" >Type of Place</label>
+    <input name="type">
+    <br>
+    <label class="form-label" >Small Description</label>
+    <input name="type">
+    <br>
+    <button class="btn btn-primary buttonC" type="submit">SUBMIT</button>
   </div>
 </form>
 </div>

@@ -16,15 +16,21 @@ router.get('/places/add', (req, res, next) => {
 
 router.post('/places/add', (req, res, next) => {
   
-
-
-
   
-  console.log(  req.body )
-  const {latitude, longitude, location,description } = req.body
+  /* let getData = map.addEventListener('change', function(e) {
+   let coordinates = e.target.value.split(",");  
+  return coordinates 
+  });
+  getData();
+  
+  let latitude = coordinates[1];
+  let longitude = coordinates[0];
+  */
 
-  console.log({latitude});
-  PlacesModel.create({latitude, longitude, location,description})
+  const {latitude, longitude, type ,description } = req.body
+
+  console.log(latitude);
+  PlacesModel.create({latitude, longitude, type, description})
       .then(() => {
           
           res.redirect('/search')
