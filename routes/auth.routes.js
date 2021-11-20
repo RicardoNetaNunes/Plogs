@@ -9,14 +9,15 @@ router.get('/signup', (req, res, next) => {
 
 // Handles POST requests to /signup 
 router.post('/signup', (req, res, next) => {
-  const {username, password} = req.body
+  const {username, email, password} = req.body
+ console.log(username, email, password)
 
     // Encryption
-    let salt = bcrypt.genSaltSync(12);
+    let salt = bcrypt.genSaltSync(10);
     let hash = bcrypt.hashSync(password, salt);
-    User.create({username, password: hash})
+    User.create({username, email, password: hash})
       .then(() => {
-          res.redirect('/')
+          res.redirect('/places/add')
       })
       .catch((err) => {
         next(err)
@@ -33,9 +34,8 @@ router.get('/login', (req, res, next) => {
 router.post('/login', (req, res, next) => {
     const {username, password} = req.body
     //Validation
-    //validate if the username and the password exist
+    //validate if the username and the password were entered
     if (username == '' || password == '') {
-      //throw error
       res.render('auth/login.hbs', {error: 'Please enter all fields'});
       }
     // Find the user username
@@ -49,10 +49,10 @@ router.post('/login', (req, res, next) => {
               let isMatching = bcrypt.compareSync(password, userObj.password);
               if (isMatching) {
                   req.session.myProperty = userObj
-                  res.redirect('/main')
+                  res.redirect('/places/add')
               }
               else {
-                res.render('auth/login.hbs', {error: 'Password not matching'})
+                res.render('auth/login.hbs', {error: 'Wrong password. Try again'})
                 return;
               }
           }
@@ -68,33 +68,22 @@ router.post('/login', (req, res, next) => {
 
 //Our custom middleware that checks if the user is loggedin
 const checkLogIn = (req, res, next) => {
-    if (req.session.myProperty) {
-        //invokes the next available function
-        next()
-    }
-    else {
-        res.redirect('/login')
-    }
+  if (req.session.myProperty) {
+      //invokes the next available function
+      next()
+  }
+  else {
+      res.redirect('/login')
+  }
 }
 
-router.get('/private', checkLogIn, (req, res, next) => {
-    let myUserInfo = req.session.myProperty  
-    if (myUserInfo) {
-      res.render('auth/private.hbs')
-    }
-    else {
-      res.redirect('/login')
-    }
-})
-
-router.get('/main', checkLogIn, (req, res, next) => {
+router.get('/profile', checkLogIn, (req, res, next) => {
   let myUserInfo = req.session.myProperty  
   if (myUserInfo) {
-    res.render('auth/main.hbs')
+    res.render('auth/profile.hbs')
   }
   else {
     res.redirect('/login')
   }
 })
-
 module.exports = router;
