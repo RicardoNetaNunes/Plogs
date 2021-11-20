@@ -9,8 +9,8 @@ let Places = require('../models/Places.model')
 
 // 3. INSERT DATA IN THE MODEL
 Places.insertMany([
-    {Name:'Praia Adão e Eva', Location:'Monte Gordo'},
-    {Name:'Praia do Coral', Location: 'Viana do Castelo'}
+    {name:'Praia Adão e Eva', location:'Monte Gordo'},
+    {name:'Praia do Coral', location: 'Viana do Castelo'}
 ])
     .then(() => {
         console.log('Data inserted')
