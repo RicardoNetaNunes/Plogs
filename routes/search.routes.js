@@ -13,6 +13,15 @@ router.get('/search', (req, res, next) => {
  
 
     
+router.get('/places',  (req, res, next) => {
+  res.render('search/detail-search.hbs')
+
+})
+
+router.get('/places/list',  (req, res, next) => {
+  res.render('search/list-view.hbs')
+
+})
 
 
   /*
