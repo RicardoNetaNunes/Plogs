@@ -1,15 +1,26 @@
+<a href="/" class="bi bi-arrow-left"></a>
+
 <form action="/signup" method="POST">
-  <label>Name</label>
-  <input name="username" type="text"  placeholder="Enter your username"  >
+<form class="dropdown-menu p-4">
+     <div class="mb-3">
+    <input type="text" class="form-control" id="exampleDropdownFormPassword2" placeholder="Choose a username">
+    <label for="exampleDropdownFormPassword2" class="form-label">Username</label>
+  </div>
+  <div class="mb-3">
+    <input type="email" class="form-control" id="exampleDropdownFormEmail2" placeholder="email@example.com">
+    <label for="exampleDropdownFormEmail2" class="form-label">Email address</label>
+  </div>
+  <div class="mb-3">
+    <input type="password" class="form-control" id="exampleDropdownFormPassword2" placeholder="Password">
+    <label for="exampleDropdownFormPassword2" class="form-label">Password</label>
+  </div>
+  <div class="mb-3">
+    <input type="password" class="form-control" id="exampleDropdownFormPassword2" placeholder="Password">
+    <label for="exampleDropdownFormPassword2" class="form-label">Confirm your password</label>
+  </div>
+  <a href="/places/add" class="btn myButton" type="button">Sign up</a>
 
-  <label>Email</label>
-  <input name="email" type="email"  placeholder="Enter your email"  > {{!-- if the type is email, it automatically see if the email is valid --}}
-
-  <label>Password</label>
-  <input name="password" type="password"  placeholder="Enter your Password"  >
-  <button>Sign Up</button>
-</form>
 
 {{#if error}}
-<p class="error">Message: {{error}}</p>
+<p class="error">Ups! {{error}}</p>
 {{/if}}

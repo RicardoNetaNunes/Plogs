@@ -24,14 +24,24 @@ body {
 .myButton:hover {
   color: white;
   background-color: #755c55;
-  border-color: #5b4641;
+  border-color: white;
 }
-.myButton:active {
+/* .myButton:active {
   background-color: #5b4641 !important;
   border-color: rgb(255, 145, 0);
+} */
+
+.dropdown-item {
+  color:black;
+  font-size: large;
 }
-a {
-  color: #00b7ff;
+.myDropdown:hover {
+  color:white;
+  background-color:#755c55;
+  border-color: white; /* not working  */
+}
+.bi {
+  color: rgb(29, 28, 28);
 }
 
 h1 {
@@ -39,5 +49,5 @@ h1 {
 }
 
 #mapid { 
-	height: 380px; 
+	height: 550px; 
 }
