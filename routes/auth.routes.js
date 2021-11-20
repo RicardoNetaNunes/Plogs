@@ -9,14 +9,15 @@ router.get('/signup', (req, res, next) => {
 
 // Handles POST requests to /signup 
 router.post('/signup', (req, res, next) => {
-  const {username, password} = req.body
+  const {username, email, password} = req.body
+ console.log(username, email, password)
 
     // Encryption
-    let salt = bcrypt.genSaltSync(12);
+    let salt = bcrypt.genSaltSync(10);
     let hash = bcrypt.hashSync(password, salt);
-    User.create({username, password: hash})
+    User.create({username, email, password: hash})
       .then(() => {
-          res.redirect('/')
+          res.redirect('/places/add')
       })
       .catch((err) => {
         next(err)
@@ -52,7 +53,7 @@ router.post('/login', (req, res, next) => {
                   res.redirect('/places/add')
               }
               else {
-                res.render('auth/login.hbs', {error: 'Password not matching'})
+                res.render('auth/login.hbs', {error: 'Wrong password! Try again'})
                 return;
               }
           }
