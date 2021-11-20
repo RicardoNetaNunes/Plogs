@@ -1,4 +1,121 @@
 <a href="/" class="bi bi-arrow-left"></a>
 
 
-<h1>ADD PLACES</h1>
+<h1>Add a New Dog Friendly Place</h1>
+
+<div class="create">
+<div class="createForm">
+  
+<br>
+<script src="/app.js"></script>
+<div  id="mapid"></div>
+ <br>
+ <div class="leaflet-control coordinates"></div>
+<script>
+    
+
+	const map = L.map('mapid').setView([47.3769, -8.5417], 4);	
+//leaflet map -- OpenStreet -- safeguard
+	var OpenStreetMap_HOT = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+	maxZoom: 19,
+	attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Tiles style by <a href="https://www.hotosm.org/" target="_blank">Humanitarian OpenStreetMap Team</a> hosted by <a href="https://openstreetmap.fr/" target="_blank">OpenStreetMap France</a>'
+});
+OpenStreetMap_HOT.addTo(map);
+
+//Google SatMap
+var googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{
+    maxZoom: 20,
+    subdomains:['mt0','mt1','mt2','mt3']
+});
+//googleSat.addTo(map)
+
+//Google StreetMap	
+var googleStreets = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',{
+    maxZoom: 20,
+    subdomains:['mt0','mt1','mt2','mt3']
+});
+googleStreets.addTo(map)
+
+
+
+
+var myIcon = L.icon({
+    iconUrl: '/images/42578_adobespark.png',
+    iconSize: [50, 50]
+});
+
+
+let beachMarker = L.marker([39.7117, -8.1238], {icon: myIcon, draggable:true }).addTo(map)
+let popup = beachMarker.bindPopup('<a href="http://localhost:3000/places">Dog Park</a><br> Dog friendly.' + beachMarker.getLatLng())
+popup.addTo(map);
+
+//console.log(beachMarker.toGeoJSON());
+
+
+
+var baseLayers = {
+    "StreetMaps": googleStreets,
+    "SatMaps": googleSat	
+};
+
+var overlays = {
+	"Beach": beachMarker,
+};
+
+L.control.layers(baseLayers, overlays).addTo(map);
+
+
+
+
+</script>
+
+
+<script>
+	console.log( {{{loc}}} ) // prints   [51.505, -0.09]
+</script>
+
+
+
+
+<form method="POST" action="/places/add">
+  <div class="mb-3">
+    <select class="form-select" aria-label="type">
+  <option selected>Select type of place</option>
+  <option value="seaBeach">Sea Beach</option>
+  <option value="riverBeach">River Beach</option>
+  <option value="friendlyWorplace">Friendly worplace</option>
+  <option value="camping">Camping</option>
+  <option value="hotel">Hotel</option>
+  <option value="hostel">Hostel</option>
+  <option value="park">Park</option>
+</select>
+<p>Zoom on map and select the place you want to add.</p>
+<script>
+  /*  
+map.on('click', function(e) {
+	document.getElementsByClassName('coordinates')[0].innerHTML = 'lat: ' + e.latlng.lat +' --- ' + 'long: ' + e.latlng.lng;
+    console.log('lat: ' + e.latlng.lat, 'long: ' + e.latlng.lng);
+} );
+*/
+
+
+map.on('click', function(e) {
+  console.log(e.latlng.lat,e.latlng.lng);
+
+  L.marker([e.latlng.lat,e.latlng.lng]).addTo(map);
+  
+    
+});
+</script>
+
+    <br>
+    <div class="input-group">
+  <span class="input-group-text">Small description / tips</span>
+  <textarea class="form-control" aria-label="description"></textarea>
+</div>
+    <br>
+    <button class="btn btn-primary" type="submit">Add Place</button>
+  </div>
+</form>
+</div>
+</div>
