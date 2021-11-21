@@ -9,8 +9,17 @@ router.get('/signup', (req, res, next) => {
 
 // Handles POST requests to /signup 
 router.post('/signup', (req, res, next) => {
-  const {username, email, password} = req.body
-  console.log(username, email, password)
+  const {username, email, password, confirmPassword} = req.body
+  //confirm if the password is the same
+  if (!username || !email || !password || !confirmPassword) {
+    res.render('auth/signup.hbs', {error: 'Please enter all fields'});
+    return;
+  }
+  
+  if (password !== confirmPassword) {
+    res.render('auth/signup.hbs', {error: "Passwords didn't match. Try again"})
+    return;
+}
 
     // Encryption
     let salt = bcrypt.genSaltSync(10);
@@ -35,7 +44,7 @@ router.post('/login', (req, res, next) => {
     const {username, password} = req.body
     //Validation
     //validate if the username and the password were entered
-    if (username == '' || password == '') {
+    if (!username || !password) {
       res.render('auth/login.hbs', {error: 'Please enter all fields'});
       }
     // Find the user username
@@ -93,4 +102,19 @@ router.get('/profile/logout', (req, res, next) => {
   req.session.destroy()
   res.redirect('/login')
 })
+
+
+//Delete user account
+router.post('/profile', (req, res, next) => {
+  console.log(aiaiaiaiaiai)
+  User.findOneAndDelete({myUserInfo})
+   .then(() => {
+    req.session.destroy()
+    res.render('auth/delAcc.hbs')
+  })
+  .catch((err) => {
+    next(err)
+  }) 
+}) 
+
 module.exports = router;
