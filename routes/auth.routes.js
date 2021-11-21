@@ -86,4 +86,11 @@ router.get('/profile', checkLogIn, (req, res, next) => {
     res.redirect('/login')
   }
 })
+
+router.get('/profile/logout', (req, res, next) => {
+  // Deletes the session
+  // this will also automatically delete the session from the DB
+  req.session.destroy()
+  res.redirect('/login')
+})
 module.exports = router;

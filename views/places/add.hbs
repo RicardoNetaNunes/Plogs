@@ -1,20 +1,17 @@
 <a href="/"><img src="/images/back.png" lat="back" class="back"></a>
-
-<h1>Add a New Dog Friendly Place</h1>
-
+<h5>Add a New Dog Friendly Place</h5>
+<br>
 <div class="create">
 <div class="createForm">
-  
-<br>
+
 <script src="/app.js"></script>
-<div  id="mapid"></div>
+<div  id="mapAdd"></div>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
  <br>
  <div class="leaflet-control coordinates"></div>
 <script>
     
-
-	const map = L.map('mapid').setView([47.3769, -8.5417], 4);	
+	const map = L.map('mapAdd').setView([47.3769, -8.5417], 4);	
 //leaflet map -- OpenStreet -- safeguard
 	var OpenStreetMap_HOT = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
 	maxZoom: 19,
@@ -107,7 +104,7 @@ map.on('click', function(e) {
 
 
 </script>
-<br>
+
 <!--
 
     <label class="form-label" >Latitude</label>
@@ -145,23 +142,28 @@ map.on('click', function(e) {
 
 <div class="create">
 <div class="createForm">
-  <h2>Add a New Dog Friendly Place</h2>
+  
 <form method="POST" action="/search">
-  <div class="mb-3">
-    <label class="form-label" >Latitude</label>
-    <input name="latitude">
-    <br>
-    <label class="form-label" >Longitude</label>
-    <input name="longitude">
-    <br>
-    <label class="form-label" >Type of Place</label>
-    <input name="type">
-    <br>
-    <label class="form-label" >Small Description</label>
-    <input name="type">
-    <br>
-    <button class="btn btn-primary buttonC" type="submit">SUBMIT</button>
-  </div>
+    <div class="input-group input-group-sm mb-3">
+  <span class="input-group-text" id="inputGroup-sizing-sm">Latitude</span>
+  <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+</div>
+  <div class="input-group input-group-sm mb-3">
+  <span class="input-group-text" id="inputGroup-sizing-sm">Longitude</span>
+  <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+</div>
+     <div class="input-group input-group-sm mb-3">
+  <span class="input-group-text" id="inputGroup-sizing-sm">Place Type</span>
+  <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+</div>
+<div class="input-group">
+  <span class="input-group-text">Description</span>
+  <textarea class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"></textarea>
+</div>
+<br>
+    <div class="d-grid gap-2">
+  <button class="btn btn-primary myButton" type="submit">Add Place</button>
+</div>
 </form>
 </div>
 </div>
