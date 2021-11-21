@@ -4,40 +4,14 @@ require("./User.model")
 require("./Opinions.model")
 
 const placeSchema = new Schema({
-    name:  {
-        type: String,
-        required: true
-    },
-    latitude: {
-        type: Number,
-        required: true
-    },
-    longitude: {
-        type: Number,
-        required: true
-    },
-    type: {
-        type: String,
-        required: true
-    },
-    description: {
-        type: String,
-        required: false
-    },
-    authorId: {
-        ref: "User",
-        type: Schema.Types.ObjectId
-    },
-    image: {
-       type: String,
-        default: '/public/images/default-image-150x150.jpg'
-    },
-    opinions: [{ 
-        type: Schema.Types.ObjectId, 
-        ref: "opinions" 
-    }]
-});
+    name: String,
+    description: String,
+    location: { type: { type: String }, coordinates: [Number] }
+  });
 
 const Places = model("places", placeSchema);
+
+
+placeSchema.index({ location: '2dsphere' });
 
 module.exports = Places;

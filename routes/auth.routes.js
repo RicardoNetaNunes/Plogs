@@ -76,7 +76,7 @@ const checkLogIn = (req, res, next) => {
       res.redirect('/login')
   }
 }
-
+/*
 router.get('/profile', checkLogIn, (req, res, next) => {
   let myUserInfo = req.session.myProperty  
   if (myUserInfo) {
@@ -86,4 +86,7 @@ router.get('/profile', checkLogIn, (req, res, next) => {
     res.redirect('/login')
   }
 })
+*/
+
+
 module.exports = router;
