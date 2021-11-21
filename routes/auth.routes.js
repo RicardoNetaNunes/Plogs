@@ -20,6 +20,12 @@ router.post('/signup', (req, res, next) => {
     res.render('auth/signup.hbs', {error: "Passwords didn't match. Try again"})
     return;
 }
+ //confirm ir the username is already in use
+/*  let usernameInUse = req.params.username
+ if (username === usernameInUse) {
+  res.render('auth/signup.hbs', {error: 'Username already in use.'});
+  return;
+ } */
 
     // Encryption
     let salt = bcrypt.genSaltSync(10);
