@@ -4,17 +4,13 @@ require("./User.model")
 require("./Opinions.model")
 
 const placeSchema = new Schema({
-    name:  {
-        type: String,
-        required: true
-    },
-    latitude: {
+    lat: {
         type: Number,
-        required: true
+        required: false
     },
-    longitude: {
+    lon: {
         type: Number,
-        required: true
+        required: false
     },
     type: {
         type: String,

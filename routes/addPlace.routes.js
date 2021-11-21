@@ -1,5 +1,4 @@
 const PlacesModel = require("../models/Places.model");
-
 const router = require("express").Router();
 
 
@@ -15,9 +14,35 @@ router.get('/places/add', (req, res, next) => {
 
 
 router.post('/places/add', (req, res, next) => {
+  const { longitude, latitude, name, description } = req.body;
+ 
+  const newPlace = new PlacesModel({
+    name,
+    description,
+    location: {
+      type: 'Point',
+      coordinates: [longitude, latitude]
+    }
+  });
+ 
+  newPlace
+    .save()
+    .then(place => {
+      res.redirect('/');
+    })
+    .catch(error => {
+      next(error);
+    });
+});
+
+
+
+
+/*
+router.post('/places/add', (req, res, next) => {
   
-  
-  /* let getData = map.addEventListener('change', function(e) {
+
+  let getData = map.addEventListener('change', function(e) {
    let coordinates = e.target.value.split(",");  
   return coordinates 
   });
@@ -25,21 +50,25 @@ router.post('/places/add', (req, res, next) => {
   
   let latitude = coordinates[1];
   let longitude = coordinates[0];
-  */
 
-  const {latitude, longitude, type ,description } = req.body
 
-  console.log(latitude);
-  PlacesModel.create({latitude, longitude, type, description})
-      .then(() => {
-          
-          res.redirect('/search')
-      })
-      .catch(() => {
-          next('the dog is unhappy')
-      })
+  const {place, description } = req.body
+
+PlacesModel.create({place, description })
+  .then(() => {
+      
+      res.redirect('/search')
+  })
+  .catch(() => {
+      next('the dog is unhappy')
+  })
+
+
+      
+  
 
 });
 
+*/
 
 module.exports = router;
