@@ -83,3 +83,13 @@ a:hover {
   margin-top: 15px;
 }
 
+.leaflet-popup-content-wrapper, .leaflet-popup-tip {
+  background: #F5C674;
+  color: #5b4641;
+  box-shadow: 0 3px 14px rgb(0 0 0 / 40%);
+  border-radius:55px 15px 70px 55px;
+}
+
+.leaflet-container a {
+  color: black;
+}
