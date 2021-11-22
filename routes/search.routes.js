@@ -1,12 +1,20 @@
 const router = require("express").Router();
-const Places = require("../models/Places.model")
+const Places = require("../models/Places.model");
 const User = require("../models/User.model")
 const Opinions = require("../models/Opinions.model")
 
 
 
 router.get('/search', (req, res, next) => {
-    res.render('search/search.hbs')
+   Places.find().then((places) => {
+    res.render('search/search.hbs' , {places})  
+   })
+   .catch(() => {
+
+   })
+  
+
+    
 
   })
 

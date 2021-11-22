@@ -40,17 +40,14 @@ var myIcon = L.icon({
     iconSize: [50, 50]
 });
 
-//console.log(beachMarker.toGeoJSON());
 var baseLayers = {
     "StreetMaps": googleStreets,
     "SatMaps": googleSat,
     "StreetTiller": maptillerStreet
     
 };
-var overlays = {
-	"Beach": beachMarker,
-};
-L.control.layers(baseLayers, overlays).addTo(map);
+
+L.control.layers(baseLayers).addTo(map);
 </script>
 
 

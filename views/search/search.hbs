@@ -42,10 +42,11 @@ var myIcon = L.icon({
 });
 
 
-
+/*
 let normalMarker =  L.marker([40.3925, -3.6984]).addTo(map)
 let normalPopUp= normalMarker.bindPopup('<a href="http://localhost:3000/places">Ironhack</a><br> Dog friendly bootcamp.'+ normalMarker.getLatLng())
 normalPopUp.addTo(map)
+*/
 
 /*
 let beachMarker = L.marker([39.7117, -8.1238], {icon: myIcon, draggable:true }).addTo(map)
@@ -63,23 +64,34 @@ var baseLayers = {
     "SatMaps": googleSat
 	
 };
-
+/*
 var overlays = {
     "Marker": normalMarker,
-	"Beach": beachMarker,
 	"Ironhack": ironBootcamps
 
 };
+*/
 
-L.control.layers(baseLayers, overlays).addTo(map);
 
-map.on('click', function(e) {
-	document.getElementsByClassName('coordinates')[0].innerHTML = 'lat: ' + e.latlng.lat +' --- ' + 'long: ' + e.latlng.lng;
-    console.log('lat: ' + e.latlng.lat, 'long: ' + e.latlng.lng);
-} );
+L.control.layers(baseLayers).addTo(map);
+
+/*let beachMarker = L.marker([39.7117, -8.1238], {icon: myIcon, draggable:true }).addTo(map)
+let popup = beachMarker.bindPopup('<a href="http://localhost:3000/places">Dog Park</a><br> Dog friendly.' + beachMarker.getLatLng())
+popup.addTo(map);*/
+
 
 
 </script>
+
+{{#each places }}
+{{log this}}
+<script>
+var marker = L.marker([{{{this.latitude}}}, {{{this.longitude}}}]).addTo(map);
+marker.bindPopup('{{{this.type}}} <br> {{{this.description}}}')
+popup.addTo(map);
+</script>
+{{/each}}
+
 
 
 <script>
