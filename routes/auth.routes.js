@@ -9,9 +9,28 @@ router.get('/signup', (req, res, next) => {
 
 // Handles POST requests to /signup 
 router.post('/signup', (req, res, next) => {
-  const {username, email, password} = req.body
-  console.log(username, email, password)
-
+  const {username, email, password, confirmPassword} = req.body
+  //confirm if the password is the same
+  if (!username || !email || !password || !confirmPassword) {
+    res.render('auth/signup.hbs', {error: 'Please enter all fields'});
+    return;
+  }
+  
+  if (password !== confirmPassword) {
+    res.render('auth/signup.hbs', {error: "Passwords didn't match. Try again"})
+    return;
+}
+ //confirm if the username is already in use
+  const user = req.myProperty
+  User.find ({user})
+    .then((userResponse) => {
+      res.render('auth/signup.hbs', {error: 'Username already in use.'});
+      return;
+    })
+    .catch(() => {
+      next()
+    })
+ 
     // Encryption
     let salt = bcrypt.genSaltSync(10);
     let hash = bcrypt.hashSync(password, salt);
@@ -35,7 +54,7 @@ router.post('/login', (req, res, next) => {
     const {username, password} = req.body
     //Validation
     //validate if the username and the password were entered
-    if (username == '' || password == '') {
+    if (!username || !password) {
       res.render('auth/login.hbs', {error: 'Please enter all fields'});
       }
     // Find the user username
@@ -76,7 +95,7 @@ const checkLogIn = (req, res, next) => {
       res.redirect('/login')
   }
 }
-/*
+
 router.get('/profile', checkLogIn, (req, res, next) => {
   let myUserInfo = req.session.myProperty  
   if (myUserInfo) {
@@ -86,7 +105,25 @@ router.get('/profile', checkLogIn, (req, res, next) => {
     res.redirect('/login')
   }
 })
-*/
 
+router.get('/profile/logout', (req, res, next) => {
+  // Deletes the session
+  // this will also automatically delete the session from the DB
+  req.session.destroy()
+  res.redirect('/login')
+})
+
+
+//Delete user account
+router.post('/profile/delete', (req, res, next) => {
+  User.findOneAndRemove({myProperty:req.session}) //NOT DELETING FROM DB
+   .then(() => {
+    req.session.destroy()
+    res.render('auth/delAcc.hbs')
+  })
+  .catch((err) => {
+    next(err)
+  }) 
+}) 
 
 module.exports = router;

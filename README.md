@@ -4,7 +4,7 @@ WEBSITE URL
 
 ## Description
 
-Basic website where the user can search/reccommend the best places where dogs are allowed 
+Basic website where the user can search/add the best places where dogs are allowed 
 
 ## User Stories
 

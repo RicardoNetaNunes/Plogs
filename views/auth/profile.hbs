@@ -1,22 +1,29 @@
-<a href="/places/add"><img src="/images/back.png" lat="back" class="back"></a>
+<a href="/places/add"><img src="/images/back.png" alt="back" class="back"></a>
 <header>
 <img src="/images/nanologo.jpg" alt="logo" class="logo">
 </header>
 <h1>My Profile</h1>
 
 <div class="d-grid gap-2 buttonBox">
-    <a href="/" class="btn myButton" type="button">Log out</a>
-  <br>
-  <a href="/search" class="btn myButton" type="button">Delete account</a>
+    <a href="/profile/logout" class="btn myButton" type="button">Log out</a>
 </div>
+{{!-- <div class="d-grid gap-2 buttonBox">
+    <a href="/profile/delete" class="btn myButton" type="button">Delete account</a>
+</div> --}}
+<form action="/profile/delete" method="POST">
+<div class="d-grid gap-2 buttonBox">
+  <button class="btn btn-primary myButton" type="submit">Delete account</button>
+</div>
+</form>
+
 
 <footer>
       <!-- Home -->
-      <a href="/"><img src="/images/home.png" lat="home" class="home"></a>
+      <a href="/"><img src="/images/home.png" alt="home" class="home"></a>
       <!-- Add -->
-      <a href="/places/add"><img src="/images/plus.png" lat="add" class="plus"></a>
+      <a href="/places/add"><img src="/images/plus.png" alt="add" class="plus"></a>
       <!-- Profile -->
-      <a href="/profile"><img src="/images/profile.png" lat="profile" class="profile"></a>
+      <a href="/profile"><img src="/images/profile.png" alt="profile" class="profile"></a>
       
 </footer>
 
