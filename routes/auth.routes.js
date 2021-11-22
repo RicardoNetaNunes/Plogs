@@ -21,12 +21,16 @@ router.post('/signup', (req, res, next) => {
     return;
 }
  //confirm ir the username is already in use
-/*  let usernameInUse = req.params.username
- if (username === usernameInUse) {
-  res.render('auth/signup.hbs', {error: 'Username already in use.'});
-  return;
- } */
-
+  const user = req.myProperty
+  User.find ({user})
+    .then((userResponse) => {
+      res.render('auth/signup.hbs', {error: 'Username already in use.'});
+      return;
+    })
+    .catch(() => {
+      next()
+    })
+ 
     // Encryption
     let salt = bcrypt.genSaltSync(10);
     let hash = bcrypt.hashSync(password, salt);
@@ -112,7 +116,7 @@ router.get('/profile/logout', (req, res, next) => {
 
 //Delete user account
 router.post('/profile/delete', (req, res, next) => {
-  User.findOneAndRemove({_id: req.session._id})
+  User.findOneAndRemove({myProperty:req.session}) //NOT DELETING FROM DB
    .then(() => {
     req.session.destroy()
     res.render('auth/delAcc.hbs')
