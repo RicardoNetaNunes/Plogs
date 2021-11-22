@@ -1,7 +1,7 @@
 const { Schema, model } = require("mongoose");
 
 require("./User.model")
-require("./newPlaces.model")
+require("./Places.model")
 
 const reviewSchema = new Schema({
     createdAt: {

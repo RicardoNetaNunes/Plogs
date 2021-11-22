@@ -54,8 +54,8 @@ app.use("/", authRoutes);
 const searchRoutes = require('./routes/search.routes')
 app.use("/", searchRoutes);
 
-const newPlaceRoutes = require('./routes/newPlace.route')
-app.use("/", newPlaceRoutes);
+const addPlaceRoutes = require('./routes/addPlace.routes')
+app.use("/", addPlaceRoutes);
 
 
 
