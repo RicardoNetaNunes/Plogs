@@ -3,8 +3,9 @@
 
 
 <script src="/app.js"></script>
+
 <div  id="mapid"></div>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
  <br>
  <div class="leaflet-control coordinates"></div>
 
@@ -42,19 +43,6 @@ googleStreets.addTo(map)
 
 
 
-var myIcon = L.icon({
-    iconUrl: '/images/42578_adobespark.png',
-    iconSize: [50, 50]
-});
-
-
-let beachMarker = L.marker([39.7117, -8.1238], {icon: myIcon, draggable:true }).addTo(map)
-let popup = beachMarker.bindPopup('<a href="http://localhost:3000/places">Dog Park</a><br> Dog friendly.' + beachMarker.getLatLng())
-popup.addTo(map);
-
-//console.log(beachMarker.toGeoJSON());
-
-
 
 var baseLayers = {
     "StreetMaps": googleStreets,
@@ -63,11 +51,9 @@ var baseLayers = {
     
 };
 
-var overlays = {
-	"Beach": beachMarker,
-};
 
-L.control.layers(baseLayers, overlays).addTo(map);
+
+L.control.layers(baseLayers).addTo(map);
 
 
 
@@ -98,16 +84,16 @@ map.on('click', function(e) {
 <form method="POST" action="/search">
   <div class="mb-3">
     <label class="form-label" >Latitude</label>
-    <input name="latitude">
+    <input name="latitude" value="latitude">
     <br>
     <label class="form-label" >Longitude</label>
-    <input name="longitude">
+    <input name="longitude" value="longitude">
     <br>
     <label class="form-label" >Type of Place</label>
-    <input name="type">
+    <input name="type" value="place">
     <br>
     <label class="form-label" >Small Description</label>
-    <input name="type">
+    <input name="type" value="description">
     <br>
     <button class="btn btn-primary buttonC" type="submit">SUBMIT</button>
   </div>

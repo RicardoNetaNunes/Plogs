@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const NewPlace = require("../models/NewPlaces.model");
+const NewPlace = require("../models/newPlaces.model");
 const User = require("../models/User.model");
 const Opinions = require("../models/Opinions.model");
 
@@ -10,7 +10,7 @@ router.get("/places/newPlaces",(req, res, next) => {
  
 
   
-  router.post('/', (req, res, next) => {
+  router.post('/places/newPlaces', (req, res, next) => {
   
   
     /* let getData = map.addEventListener('change', function(e) {
@@ -24,10 +24,10 @@ router.get("/places/newPlaces",(req, res, next) => {
     */
     
 
-    const {latitude, longitude, type ,description } = req.body
+    const {latitude, longitude, place ,description } = req.body
   
     console.log(latitude);
-    PlacesModel.create({latitude, longitude, type, description})
+    NewPlace.create({latitude, longitude, place, description})
         .then(() => {
             
             res.redirect('/search')

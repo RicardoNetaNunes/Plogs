@@ -54,8 +54,8 @@ app.use("/", authRoutes);
 const searchRoutes = require('./routes/search.routes')
 app.use("/", searchRoutes);
 
-const addPlaceRoutes = require('./routes/addPlace.routes')
-app.use("/", addPlaceRoutes);
+const newPlaceRoutes = require('./routes/newPlace.route')
+app.use("/", newPlaceRoutes);
 
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
