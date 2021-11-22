@@ -111,9 +111,8 @@ router.get('/profile/logout', (req, res, next) => {
 
 
 //Delete user account
-router.post('/profile', (req, res, next) => {
-  console.log(aiaiaiaiaiai)
-  User.findOneAndDelete({myUserInfo})
+router.post('/profile/delete', (req, res, next) => {
+  User.findOneAndRemove({_id: req.session._id})
    .then(() => {
     req.session.destroy()
     res.render('auth/delAcc.hbs')
