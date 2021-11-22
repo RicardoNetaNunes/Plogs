@@ -56,6 +56,7 @@ router.post('/login', (req, res, next) => {
     //validate if the username and the password were entered
     if (!username || !password) {
       res.render('auth/login.hbs', {error: 'Please enter all fields'});
+      return
       }
     // Find the user username
     User.find({username})
