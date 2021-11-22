@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const User = require('../models/User.model')
+const User = require('../models/User.model');
 const bcrypt = require('bcryptjs');
 
 // Handles GET requests to /signup and shows a form
@@ -110,7 +110,7 @@ router.get('/profile/logout', (req, res, next) => {
   // Deletes the session
   // this will also automatically delete the session from the DB
   req.session.destroy()
-  res.redirect('/login')
+  res.redirect('/')
 })
 
 
