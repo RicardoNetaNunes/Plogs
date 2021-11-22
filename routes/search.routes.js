@@ -6,7 +6,15 @@ const Opinions = require("../models/Opinions.model")
 
 
 router.get('/search', (req, res, next) => {
-    res.render('search/search.hbs')
+   Places.find().then((places) => {
+    res.render('search/search.hbs' , {places})  
+   })
+   .catch(() => {
+
+   })
+  
+
+    
 
   })
 
