@@ -78,58 +78,26 @@ map.on('click', function(e) {
 });
 </script>
 
-<!--
-    <label class="form-label" >Latitude</label>
-    <input class="form-control" type="text" name="latitude">
-    <br>
-    <label class="form-label" >Longitude</label>
-    <input class="form-control" type="text" name="longitude">
-    <br>
-<form method="POST" action="/places/add">
-  <div class="mb-3">
-    <select class="form-select" aria-label="type">
-  <option selected>Select type of place</option>
-  <option value="seaBeach">Sea Beach</option>
-  <option value="riverBeach">River Beach</option>
-  <option value="friendlyWorplace">Friendly worplace</option>
-  <option value="camping">Camping</option>
-  <option value="hotel">Hotel</option>
-  <option value="hostel">Hostel</option>
-  <option value="park">Park</option>
-</select>
-<p>Zoom on map and select the place you want to add.</p>
-    <br>
-    <div class="input-group">
-  <span class="input-group-text">Small description / tips</span>
-  <textarea class="form-control" aria-label="description"></textarea>
-</div>
-    <br>
-    <button class="btn btn-primary" type="submit">Add Place</button>
-  </div>
-</form>
-</div>
-</div>
--->
 
 <div class="create">
 <div class="createForm">
   
-<form method="POST" action="/search">
+<form method="POST" action="/places/add">
     <div class="input-group input-group-sm mb-3">
   <span class="input-group-text" id="inputGroup-sizing-sm">Latitude</span>
-  <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+  <input name="lat" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
 </div>
   <div class="input-group input-group-sm mb-3">
   <span class="input-group-text" id="inputGroup-sizing-sm">Longitude</span>
-  <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+  <input name="lon" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
 </div>
      <div class="input-group input-group-sm mb-3">
   <span class="input-group-text" id="inputGroup-sizing-sm">Place Type</span>
-  <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+  <input name="type" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
 </div>
 <div class="input-group">
   <span class="input-group-text">Description</span>
-  <textarea class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"></textarea>
+  <textarea name="description" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"></textarea>
 </div>
 <br>
     <div class="d-grid gap-2">

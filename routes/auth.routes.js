@@ -20,7 +20,7 @@ router.post('/signup', (req, res, next) => {
     res.render('auth/signup.hbs', {error: "Passwords didn't match. Try again"})
     return;
 }
- //confirm ir the username is already in use
+ //confirm if the username is already in use
   const user = req.myProperty
   User.find ({user})
     .then((userResponse) => {
