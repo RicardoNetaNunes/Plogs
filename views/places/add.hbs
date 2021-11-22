@@ -67,15 +67,13 @@ L.control.layers(baseLayers, overlays).addTo(map);
 <script id="select-location">
   
 map.on('click', function(e) {
-	document.getElementsByClassName('coordinates')[0].innerHTML = 'lat: ' + e.latlng.lat +' --- ' + 'long: ' + e.latlng.lng;
+	//document.getElementsByClassName('coordinates')[0].innerHTML = 'lat: ' + e.latlng.lat +' --- ' + 'long: ' + e.latlng.lng;
+    L.marker([e.latlng.lat,e.latlng.lng]).addTo(map);
     console.log('lat: ' + e.latlng.lat, 'long: ' + e.latlng.lng);
+document.querySelector("#latitude").value=e.latlng.lat;
+document.querySelector("#longitude").value=e.latlng.lng;
 } );
-map.on('click', function(e) {
-  console.log(e.latlng.lat,e.latlng.lng);
-  L.marker([e.latlng.lat,e.latlng.lng]).addTo(map);
-  
-   
-});
+
 </script>
 
 
@@ -84,12 +82,12 @@ map.on('click', function(e) {
   
 <form method="POST" action="/places/add">
     <div class="input-group input-group-sm mb-3">
-  <span class="input-group-text" id="inputGroup-sizing-sm">Latitude</span>
-  <input name="latitude" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+  
+  <input type="hidden" id="latitude" name="latitude" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" >
 </div>
-  <div class="input-group input-group-sm mb-3">
-  <span class="input-group-text" id="inputGroup-sizing-sm">Longitude</span>
-  <input name="longitude" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+  <div  class="input-group input-group-sm mb-3">
+  
+  <input type="hidden" id="longitude" name="longitude" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"  >
 </div>
      <div class="input-group input-group-sm mb-3">
   <span class="input-group-text" id="inputGroup-sizing-sm">Place Type</span>

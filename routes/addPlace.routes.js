@@ -12,7 +12,6 @@ router.get('/places/add', (req, res, next) => {
 
 router.post('/places/add', (req, res, next) => {
   const {latitude, longitude, type, description} = req.body;
- console.log('addingggggg')
 
  Places.create({latitude, longitude, type, description})
  .then(() => {
