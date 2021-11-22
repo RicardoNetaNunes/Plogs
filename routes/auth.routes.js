@@ -36,7 +36,7 @@ router.post('/signup', (req, res, next) => {
     let hash = bcrypt.hashSync(password, salt);
     User.create({username, email, password: hash})
       .then(() => {
-          res.redirect('/places/add')
+          res.redirect('/') //just after log in
       })
       .catch((err) => {
         next(err)
