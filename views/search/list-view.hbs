@@ -2,9 +2,39 @@
 
 <h1>List of all places</h1>
 
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">PlaceId</th>
+      <th scope="col">Type of Place</th>
+      <th scope="col">Description</th>
+      <th scope="col">Photo</th>
+      <th scope="col">User that created</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each places}}
+    <tr>
+      <th scope="row">{{_id}} </th>
+      <td>{{this.place}}</td>
+      <td>{{this.description}}</td>
+      <td><img src={{this.image}} alt="image of the place"></td>
+      <td>{{this.authorId}}</td>
+      <td> 
+<form action="/places/{{this._id}}/edit" method="GET">
+  <button type="submit" class="btn btn-warning customB">Edit</button>
+</form>
+<form action="/places/{{this._id}}/delete" method="POST">
+   <button class="btn btn-danger customB1">Delete</button>
+</form>
 
+      </td>
+    </tr>
+{{/each}}
 
-
+    
+  </tbody>
+</table>
 
 
 

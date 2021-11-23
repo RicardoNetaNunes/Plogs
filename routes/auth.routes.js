@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const User = require('../models/User.model');
 const bcrypt = require('bcryptjs');
+const Places = require("../models/Places.model");
 
 // Handles GET requests to /signup and shows a form
 router.get('/signup', (req, res, next) => {

@@ -22,22 +22,31 @@ router.get('/places/add', checkLogIn, (req, res, next) => {
 
 router.post('/places/add', (req, res, next) => {
   const {latitude, longitude, place, description} = req.body;
+  const user =req.session.myProperty._id
   console.log (latitude, longitude)
   if(!latitude || !longitude) {
     res.render('places/add.hbs', {error: 'Please pick the location on the map'});
     return
   }
-  if(!place) {
+ /* if(!place) {
     res.render('places/add.hbs', {error: 'Please fill the type field'});
     return
-  }
- Places.create({latitude, longitude, place, description})
- .then(() => {
-     res.redirect('/')
+  }*/
+ Places.create({latitude, longitude, place, description, authorId : user})
+ 
+ .then((place) => {
+  console.log(place)
+  User.findByIdAndUpdate({_id: user}, { $push: { placesAdded: place._id, placesVisited: place._id } })
+  .then(() => {
+    res.redirect('/')
  })
- .catch((err) => {
-   next(err)
- })
+})
+.catch((err)=>{
+  next(err)
+})
+
+
+
 
 });
 

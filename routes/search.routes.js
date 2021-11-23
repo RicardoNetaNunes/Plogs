@@ -10,24 +10,33 @@ router.get('/search', (req, res, next) => {
     res.render('search/search.hbs' , {places})  
    })
    .catch(() => {
-
    })
-  
-
-    
-
   })
 
  
 
     
-router.get('/places',  (req, res, next) => {
-  res.render('search/detail-search.hbs')
+router.get('/places/details/:placeId',  (req, res, next) => {
+  const {placeId} = req.params
+
+  Places.findById(placeId)
+  .then((place) => {
+      res.render('search/detail-search.hbs', {place})
+  })
+  
+  .catch(() => {
+      next('Not sure what place you wanted')
+  })
 
 })
 
 router.get('/places/list',  (req, res, next) => {
-  res.render('search/list-view.hbs')
+  Places.find().then((places) => {
+  res.render('search/list-view.hbs', {places})  
+})
+.catch(() => {
+
+})
 
 })
 

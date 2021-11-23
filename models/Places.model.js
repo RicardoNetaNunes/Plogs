@@ -26,7 +26,7 @@ const placeSchema = new Schema({
     },
     image: {
        type: String,
-        default: '/public/images/default-image-150x150.jpg'
+        default: '/images/default-image-150x150.jpg'
     },
     opinions: [{ 
         type: Schema.Types.ObjectId, 
