@@ -1,5 +1,6 @@
 const { Schema, model } = require("mongoose");
 
+require("./Places.model")
 
 const userSchema = new Schema({
   username: {
@@ -16,8 +17,8 @@ const userSchema = new Schema({
     required: false /* (had to make it false, bc if true the user has to enter the email when logging in and we just ask for the username and password) */
   },
 
-  placesAdded: [{ type: Schema.Types.ObjectId, ref: 'place' }],
-  placesVisited: [{ type: Schema.Types.ObjectId, ref: 'place' }]
+  placesAdded: [{ type: Schema.Types.ObjectId, ref: 'places' }],
+  placesVisited: [{ type: Schema.Types.ObjectId, ref: 'places' }]
 }, 
 {
   timestamps: {
