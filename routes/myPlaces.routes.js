@@ -12,7 +12,7 @@ const router = require("express").Router();
 //DELETE
 router.post('/myPlaces/:placesAddedId/delete', (req, res, next) => {
     const {placesAddedId} = req.params
-    Places.findByIdAndRemove(placesAddedId)
+    Places.findByIdAndDelete(placesAddedId)
     .then(() => {
         res.redirect('/profile')
     })
@@ -23,3 +23,4 @@ router.post('/myPlaces/:placesAddedId/delete', (req, res, next) => {
 
 
   module.exports = router;
+  
