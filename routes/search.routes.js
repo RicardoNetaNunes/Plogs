@@ -20,8 +20,11 @@ router.get('/places/details/:placeId',  (req, res, next) => {
   const {placeId} = req.params
 
   Places.findById(placeId)
+  .populate('opinions')
   .then((place) => {
+      console.log('uno', place)
       res.render('search/detail-search.hbs', {place})
+
   })
   
   .catch(() => {
@@ -39,6 +42,57 @@ router.get('/places/list',  (req, res, next) => {
 })
 
 })
+
+router.get('/places/opinions/:placeId',  (req, res, next) => {
+  const {placeId} = req.params;
+
+  Places.findById(placeId)
+  .then((place) => {
+      res.render('search/opinions.hbs', {place})
+  })
+  
+  .catch(() => {
+      next('Not sure what place you wanted')
+  })
+
+})
+
+//Our custom middleware that checks if the user is loggedin
+const checkLogIn = (req, res, next) => {
+  if (req.session.myProperty) {
+      //invokes the next available function
+      next()
+  }
+  else {
+      res.redirect('/login')
+  }
+}
+
+router.post('/places/opinions/:placeId', checkLogIn, (req, res, next) => {
+  const {placeId} = req.params;
+  const {opinions} = req.body;
+  const userId = req.session.myProperty._id
+//console.log('uno', userId)
+//console.log('duo', opinions)
+//console.log('trio', placeId)
+  Opinions.create({opinions, userId: userId, placesId: placeId })
+ .then((opinions) => {
+  Places.findByIdAndUpdate({_id: placeId}, { $push: { opinions:  opinions._id } })
+  .then(() => {
+    const {placeId} = req.params
+
+    Places.findById(placeId)
+    .then((place) => {
+        res.render('search/detail-search.hbs', {place})
+    })
+ })
+})
+.catch((err)=>{
+  next(err)
+})
+
+});
+
 
 
   
