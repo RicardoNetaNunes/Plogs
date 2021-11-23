@@ -41,12 +41,6 @@ router.get('/places/list',  (req, res, next) => {
 })
 
 
-  /*
-router.get("/search", (req, res, next) => {
-	let loc = [51.505, -0.09]
-	res.render("/search/search.hbs", {loc: JSON.stringify(loc)});
-});
-
-*/
+  
 
 module.exports = router;
