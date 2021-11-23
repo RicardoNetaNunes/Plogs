@@ -43,7 +43,19 @@ router.get('/places/list',  (req, res, next) => {
 
 })
 
-router.get('/places/opinions/:placeId',  (req, res, next) => {
+//Our custom middleware that checks if the user is loggedin
+const checkLogIn = (req, res, next) => {
+  if (req.session.myProperty) {
+      //invokes the next available function
+      next()
+  }
+  else {
+      res.redirect('/login')
+  }
+}
+
+
+router.get('/places/opinions/:placeId',checkLogIn,  (req, res, next) => {
   const {placeId} = req.params;
 
   Places.findById(placeId)
@@ -57,18 +69,9 @@ router.get('/places/opinions/:placeId',  (req, res, next) => {
 
 })
 
-//Our custom middleware that checks if the user is loggedin
-const checkLogIn = (req, res, next) => {
-  if (req.session.myProperty) {
-      //invokes the next available function
-      next()
-  }
-  else {
-      res.redirect('/login')
-  }
-}
 
-router.post('/places/opinions/:placeId', checkLogIn, (req, res, next) => {
+
+router.post('/places/opinions/:placeId',  (req, res, next) => {
   const {placeId} = req.params;
   const {opinions} = req.body;
   const userId = req.session.myProperty._id
@@ -82,8 +85,9 @@ router.post('/places/opinions/:placeId', checkLogIn, (req, res, next) => {
     const {placeId} = req.params
 
     Places.findById(placeId)
+    .populate('opinions')
     .then((place) => {
-        res.render('search/detail-search.hbs', {place})
+        res.render('search/detail-search.hbs', {place, opinions})
     })
  })
 })
