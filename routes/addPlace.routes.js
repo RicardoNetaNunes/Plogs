@@ -23,13 +23,6 @@ router.get('/places/add', checkLogIn, (req, res, next) => {
 
 router.post('/places/add', uploader.single("image"), (req, res, next) => {
   const {latitude, longitude, place, description} = req.body;
-  let image
-  if (!req.file || !req.file.path){
-      image = '/images/default.jpg'
-  }
-  else {
-      image = req.file.path
-  }
   if(!latitude || !longitude) {
     res.render('places/add.hbs', {error: 'Please pick the location on the map'});
     return
@@ -38,7 +31,16 @@ router.post('/places/add', uploader.single("image"), (req, res, next) => {
     res.render('places/add.hbs', {error: 'Please select the type of place'});
     return
   }
- Places.create({latitude, longitude, place, description})
+
+  let image = req.file.path
+  if (!req.file){
+      image = '/images/default.jpg'
+  }
+  else {
+      image = req.file.path
+  }
+  
+ Places.create({latitude, longitude, place, description, image})
  .then(() => {
      res.redirect('/search')
  })
@@ -47,8 +49,6 @@ router.post('/places/add', uploader.single("image"), (req, res, next) => {
  })
 
 });
-
-
 
 
 
