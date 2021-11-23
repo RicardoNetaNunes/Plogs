@@ -46,10 +46,16 @@ body {
   color: rgb(29, 28, 28); 
 }
 
-h1, h2, h3, h4, h5, h6{
+h1, h2, h3, h4, h5{
   color:#5b4641;
   text-align: center;
   margin-top: -20px;
+}
+h6 {
+  color:#5b4641;
+  text-align: center;
+  margin-top: -20px;
+  margin-bottom: -20px;
 }
 
 #mapid { 
@@ -108,3 +114,12 @@ a:hover {
   max-height: 100vh;
   margin: auto;
 }
+/* .btn-outline-secondary {
+  color:black;
+  border-radius: 5px;
+}
+.btn-outline-secondary:hover {
+  background-color: #5b4641;
+  border-color: white;
+}
+ */
