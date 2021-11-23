@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const User = require('../models/User.model')
+const User = require('../models/User.model');
 const bcrypt = require('bcryptjs');
 
 // Handles GET requests to /signup and shows a form
@@ -36,7 +36,7 @@ router.post('/signup', (req, res, next) => {
     let hash = bcrypt.hashSync(password, salt);
     User.create({username, email, password: hash})
       .then(() => {
-          res.redirect('/places/add')
+          res.redirect('/') //just after log in
       })
       .catch((err) => {
         next(err)
@@ -56,6 +56,7 @@ router.post('/login', (req, res, next) => {
     //validate if the username and the password were entered
     if (!username || !password) {
       res.render('auth/login.hbs', {error: 'Please enter all fields'});
+      return
       }
     // Find the user username
     User.find({username})
@@ -110,7 +111,7 @@ router.get('/profile/logout', (req, res, next) => {
   // Deletes the session
   // this will also automatically delete the session from the DB
   req.session.destroy()
-  res.redirect('/login')
+  res.redirect('/')
 })
 
 

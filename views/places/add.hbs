@@ -40,7 +40,6 @@ var myIcon = L.icon({
     iconSize: [50, 50]
 });
 
-
 var baseLayers = {
     "StreetMaps": googleStreets,
     "SatMaps": googleSat,
@@ -73,7 +72,8 @@ document.querySelector("#longitude").value=e.latlng.lng;
 } );
 
 </script>
-
+<br>
+<h6>Pick the location on the map</h6>
 
 <div class="create">
 <div class="createForm">
@@ -87,10 +87,21 @@ document.querySelector("#longitude").value=e.latlng.lng;
   
   <input type="hidden" id="longitude" name="longitude" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"  >
 </div>
-     <div class="input-group input-group-sm mb-3">
-  <span class="input-group-text" id="inputGroup-sizing-sm">Place Type</span>
-  <input name="type" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+<div class="input-group mb-3">
+  <label class="input-group-text" for="inputGroupSelect01">Place Type</label>
+  <select class="form-select" id="inputGroupSelect01">
+    <option selected>Choose...</option>
+    <option value="1">River Beach</option>
+    <option value="2">Beach</option>
+    <option value="3">Park</option>
+    <option value="4">Campsite</option>
+    <option value="5">Accomodation</option>
+  </select>
 </div>
+{{!--      <div class="input-group input-group-sm mb-3">
+  <span class="input-group-text" id="inputGroup-sizing-sm">Place Type</span>
+  <input name="place" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+</div> --}}
 <div class="input-group">
   <span class="input-group-text">Description</span>
   <textarea name="description" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"></textarea>
@@ -110,3 +121,7 @@ document.querySelector("#longitude").value=e.latlng.lng;
       <!-- Profile -->
       <a href="/profile"><img src="/images/profile.png" alt="profile" class="profile"></a>
 </footer>
+
+{{#if error}}
+<p class="error">Ups! {{error}}</p>
+{{/if}}
