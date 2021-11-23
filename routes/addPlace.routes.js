@@ -22,15 +22,14 @@ router.get('/places/add', checkLogIn, (req, res, next) => {
 
 router.post('/places/add', (req, res, next) => {
   const {latitude, longitude, place, description} = req.body;
-  console.log (latitude, longitude)
   if(!latitude || !longitude) {
     res.render('places/add.hbs', {error: 'Please pick the location on the map'});
     return
   }
-  if(!place) {
+ /*  if(!place) {
     res.render('places/add.hbs', {error: 'Please fill the type field'});
     return
-  }
+  } */
  Places.create({latitude, longitude, place, description})
  .then(() => {
      res.redirect('/')
