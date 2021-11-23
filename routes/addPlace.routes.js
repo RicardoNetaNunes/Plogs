@@ -34,7 +34,7 @@ router.post('/places/add', uploader.single("image"), (req, res, next) => {
     return
   }
 
-  let image = req.file.path
+  let image
   if (!req.file){
       image = '/images/default.jpg'
   }
