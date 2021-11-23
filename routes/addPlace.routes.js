@@ -23,7 +23,7 @@ router.get('/places/add', checkLogIn, (req, res, next) => {
 
 router.post('/places/add', uploader.single("image"), (req, res, next) => {
   const {latitude, longitude, place, description} = req.body;
-  const user =req.session.myProperty._id
+  const user = req.session.myProperty._id
  
   if(!latitude || !longitude) {
     res.render('places/add.hbs', {error: 'Please pick the location on the map'});
@@ -43,8 +43,7 @@ router.post('/places/add', uploader.single("image"), (req, res, next) => {
   }
   
  Places.create({latitude, longitude, place, description, authorId: user, image})
- .then((place) => {
-  console.log(place)
+ .then(() => {
   User.findByIdAndUpdate({_id: user}, { $push: { placesAdded: place._id, placesVisited: place._id } })
   .then(() => {
     res.redirect('/profile')
