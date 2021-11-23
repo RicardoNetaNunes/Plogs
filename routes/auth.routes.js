@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const User = require('../models/User.model');
 const bcrypt = require('bcryptjs');
+const Places = require("../models/Places.model");
 
 // Handles GET requests to /signup and shows a form
 router.get('/signup', (req, res, next) => {
@@ -98,13 +99,32 @@ const checkLogIn = (req, res, next) => {
 }
 
 router.get('/profile', checkLogIn, (req, res, next) => {
-  let myUserInfo = req.session.myProperty  
+  let myUserInfo = req.session.myProperty
+
+  if (myUserInfo === undefined) {
+    myUserInfo = req.session.myProperty
+  }
+  console.log("first ", myUserInfo._id)
+  User.findById(myUserInfo._id)
+  .populate('placesAdded')
+  .then((user) =>{
+    console.log(user)
+    res.render('auth/profile.hbs', {places: user.placesAdded})
+  })
+ .catch(() => {
+   console.log('Who let the dogs out')
+   //console.log("second ", myUserInfo.)
+ })
+  
+/*
   if (myUserInfo) {
-    res.render('auth/profile.hbs')
+    res.render('auth/profile.hbs',{title: myUserInfo.username, placesAdded: myUserInfo.placesAdded})
+    console.log(myUserInfo.placesAdded)
   }
   else {
     res.redirect('/login')
   }
+  */
 })
 
 router.get('/profile/logout', (req, res, next) => {

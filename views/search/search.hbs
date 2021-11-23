@@ -48,7 +48,10 @@ let normalPopUp= normalMarker.bindPopup('<a href="http://localhost:3000/places">
 normalPopUp.addTo(map)
 */
 
-
+/*
+let beachMarker = L.marker([39.7117, -8.1238], {icon: myIcon, draggable:true }).addTo(map)
+let popup = beachMarker.bindPopup('<a href="http://localhost:3000/places">Dog Park</a><br> Dog friendly.' + beachMarker.getLatLng())
+popup.addTo(map); */
 
 //console.log(beachMarker.toGeoJSON());
 
@@ -84,12 +87,12 @@ popup.addTo(map);*/
 {{log this}}
 <script>
 var marker = L.marker([{{{this.latitude}}}, {{{this.longitude}}}]).addTo(map);
-marker.bindPopup('{{{this.type}}} <br> {{{this.description}}}')
+marker.bindPopup('{{{this.place}}}<br> <a href="/places/details/{{{this._id}}}">Details</a>')
 popup.addTo(map);
 </script>
 {{/each}}
 
-
+<a href=""></a>
 
 <script>
 	console.log( {{{loc}}} ) // prints   [51.505, -0.09]
