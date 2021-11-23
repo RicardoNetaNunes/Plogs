@@ -1,5 +1,4 @@
-<a href="http://localhost:3000/search" > Go back </a>
-
+<a href="http://localhost:3000/search"><img src="/images/back.png" alt="back" class="back"></a>
 <div>
 <img src={{place.image}} alt="image of the place">
 
@@ -7,12 +6,14 @@
 
 <p>Description: {{{place.description}}}</p>
 
-<p>Comments: {{{place.opinions}}}</p>
+ <p>Comments:{{{place.opinions}}} </p>
+
+
 
 </div>
 
 
-
+<a href="/places/opinions/{{{place._id}}}">Add your opinions</a>
 
 
 <footer>

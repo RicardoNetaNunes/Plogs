@@ -1,6 +1,7 @@
 const { Schema, model } = require("mongoose");
 
 require("./Places.model")
+require("./Opinions.model")
 
 const userSchema = new Schema({
   username: {

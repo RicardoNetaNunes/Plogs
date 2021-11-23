@@ -43,7 +43,7 @@ router.post('/places/add', uploader.single("image"), (req, res, next) => {
   }
   
  Places.create({latitude, longitude, place, description, authorId: user, image})
- .then(() => {
+ .then((place) => {
   User.findByIdAndUpdate({_id: user}, { $push: { placesAdded: place._id, placesVisited: place._id } })
   .then(() => {
     res.redirect('/profile')

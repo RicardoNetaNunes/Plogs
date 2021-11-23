@@ -1,0 +1,39 @@
+<a href="/places/details/{{{place._id}}}"><img src="/images/back.png" alt="back" class="back"></a>
+
+
+<h2>Do you know this place, give your opinion about it.</h2>
+
+<div class="createForm">
+<form method="POST" action="/places/opinions/{{{place._id}}}">
+ <div class="input-group">
+  <span class="input-group-text">Your opinions:</span>
+  <textarea name="opinions" value="opinions" class="form-control" aria-label="With textarea"></textarea>
+</div>
+<div class="d-grid gap-2">
+   
+  <button class="btn btn-primary myButton" type="submit">Add your opinion</button>
+</div>
+</form>
+
+
+
+
+
+
+
+
+
+
+
+<footer>
+      <!-- Home -->
+      <a href="/"><img src="/images/home.png" alt="home" class="home"></a>
+      <!-- Add -->
+      <a href="/places/add"><img src="/images/plus.png" alt="add" class="plus"></a>
+      <!-- Profile -->
+      <a href="/profile"><img src="/images/profile.png" alt="profile" class="profile"></a>
+</footer>
+
+{{#if error}}
+<p class="error">Ups! {{error}}</p>
+{{/if}}
