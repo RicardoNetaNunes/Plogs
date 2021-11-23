@@ -104,16 +104,15 @@ router.get('/profile', checkLogIn, (req, res, next) => {
   if (myUserInfo === undefined) {
     myUserInfo = req.session.myProperty
   }
-  console.log("first ", myUserInfo._id)
+  
   User.findById(myUserInfo._id)
   .populate('placesAdded')
   .then((user) =>{
-    console.log(user)
+    //console.log(user)
     res.render('auth/profile.hbs', {places: user.placesAdded})
   })
  .catch(() => {
    console.log('Who let the dogs out')
-   //console.log("second ", myUserInfo.)
  })
   
 /*

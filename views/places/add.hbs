@@ -106,9 +106,6 @@ document.querySelector("#longitude").value=e.latlng.lng;
   <textarea name="description" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"></textarea>
 </div>
 <br>
-{{!-- <form method="POST" action="/places/add" enctype="multipart/form-data"> --}}
-   
-  {{!--   <button class="bi bi-camera-fill btn-outline-secondary" type="submit">  Submit Photo</button> --}}
 
 <div class="d-grid gap-2">
    <input type="file" name="image" accept="image/png, image/jpg">
@@ -130,3 +127,8 @@ document.querySelector("#longitude").value=e.latlng.lng;
 {{#if error}}
 <p class="error">Ups! {{error}}</p>
 {{/if}}
+
+
+{{!-- camera icon --}}
+{{!-- <form method="POST" action="/places/add" enctype="multipart/form-data"> --}}
+  {{!--   <button class="bi bi-camera-fill btn-outline-secondary" type="submit">  Submit Photo</button> --}}

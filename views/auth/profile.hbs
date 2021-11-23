@@ -16,7 +16,7 @@
   <thead>
     <tr>
       <th scope="col">Type of Place</th>
-      <th scope="col">Description</th> 
+      <th scope="col">Description</th>
     </tr>
   </thead>
   <tbody>
@@ -24,24 +24,19 @@
     <tr>
       <td>{{{this.place}}}</td>
       <td>{{this.description}}</td>
-      <td> 
+      <td>
 <form action="/profile" method="GET">
-  <button type="submit" class="btn btn-warning customB">Edit</button>
+  <button href="/profile/editplace" type="submit" class="btn btn-outline-secondary bi bi-pencil-fill"> edit</button>
 </form>
-<form action="/profile" method="POST">
-   <button class="btn btn-danger customB1">Delete</button>
+<form action="/myPlaces/{{this._id}}/delete" method="POST">
+   <button href="/myplaces/delete" type="submit" class="btn btn-outline-secondary bi bi-trash-fill"></i> delete</button>
 </form>
-
       </td>
     </tr>
 {{/each}}
-
-  
   </tbody>
 </table>
 </div>
-
-
 <footer>
       <!-- Home -->
       <a href="/"><img src="/images/home.png" alt="home" class="home"></a>
@@ -49,6 +44,4 @@
       <a href="/places/add"><img src="/images/plus.png" alt="add" class="plus"></a>
       <!-- Profile -->
       <a href="/profile"><img src="/images/profile.png" alt="profile" class="profile"></a>
-      
 </footer>
-

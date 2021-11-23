@@ -114,12 +114,13 @@ a:hover {
   max-height: 100vh;
   margin: auto;
 }
-/* .btn-outline-secondary {
+.btn-outline-secondary {
   color:black;
   border-radius: 5px;
+  border-color: transparent;
 }
 .btn-outline-secondary:hover {
   background-color: #5b4641;
   border-color: white;
 }
- */
+

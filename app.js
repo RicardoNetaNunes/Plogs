@@ -57,6 +57,8 @@ app.use("/", searchRoutes);
 const addPlaceRoutes = require('./routes/addPlace.routes')
 app.use("/", addPlaceRoutes);
 
+const myPlacesRoutes = require('./routes/myPlaces.routes')
+app.use("/", myPlacesRoutes);
 
 
 
