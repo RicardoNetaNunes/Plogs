@@ -117,7 +117,7 @@ router.get('/profile/logout', (req, res, next) => {
 
 //Delete user account
 router.post('/profile/delete', (req, res, next) => {
-  User.findOneAndRemove({myProperty:req.session}) //NOT DELETING FROM DB
+  User.findOneAndRemove({myProperty:req.session})
    .then(() => {
     req.session.destroy()
     res.render('auth/delAcc.hbs')
