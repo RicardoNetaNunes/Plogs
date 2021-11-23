@@ -7,7 +7,20 @@ const router = require("express").Router();
 //USER CAN EDIT OR DELETE PLACES ADDED BEFORE
 
 //EDIT
+router.get('/myPlaces/:placesAddedId/edit', (req, res, next) => {
+        res.render('places/edit.hbs')
+  });
 
+router.post('/myPlaces/:placesAddedId/edit', (req, res, next) => {
+    const {placesAddedId} = req.params
+    Places.findByIdAndUpdate({placesAddedId}, req.body)
+    .then(() => {
+        res.redirect('/profile')
+    })
+    .catch(() => {
+        next('Place not edited')
+    })
+  });
   
 //DELETE
 router.post('/myPlaces/:placesAddedId/delete', (req, res, next) => {

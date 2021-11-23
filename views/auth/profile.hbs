@@ -25,7 +25,7 @@
       <td>{{{this.place}}}</td>
       <td>{{this.description}}</td>
       <td>
-<form action="/profile" method="GET">
+<form action="/myPlaces/{{this._id}}/edit" method="GET">
   <button href="/profile/editplace" type="submit" class="btn btn-outline-secondary bi bi-pencil-fill"> edit</button>
 </form>
 <form action="/myPlaces/{{this._id}}/delete" method="POST">
