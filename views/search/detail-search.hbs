@@ -11,19 +11,14 @@
          {{{place.description}}}</textarea>
   <textarea class="list-group-item opinions detail">    Opinions:
          {{#each place.opinions}}
+      
             {{this.createdAt}}
-            "{{this.opinions}}"
+            {{this.opinions}}
        --------------------------------------------------------------------------------------------------------     
             {{/each}}
          </textarea>
 </div>
 </div>
-
-
-
-
-
-
 
 <br>
 {{!-- <button href="/places/opinions/{{{place._id}}}" type="submit" class="btn-outline-secondary">Share my opinion</button> --}}

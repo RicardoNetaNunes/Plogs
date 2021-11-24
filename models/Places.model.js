@@ -18,7 +18,7 @@ const placeSchema = new Schema({
     },
     description: {
         type: String,
-        required: false
+        required: true
     },
     authorId: {
         ref: "User",

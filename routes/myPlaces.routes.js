@@ -13,10 +13,23 @@ router.get('/myPlaces/:placesAddedId/edit', (req, res, next) => {
   });
 
 router.post('/myPlaces/:placesAddedId/edit',uploader.single("image"), (req, res, next) => {
-
-
     const {placesAddedId} = req.params
     const {latitude, longitude, place, description} = req.body;
+
+    if(!latitude || !longitude) {
+        res.render('places/add.hbs', {error: 'Please pick the location on the map'});
+        return
+      }
+      if(place == "Choose...") {
+        res.render('places/add.hbs', {error: 'Please select the type of place'});
+        return
+      }
+      if(!description) {
+        res.render('places/add.hbs', {error: 'Please add a small description'});
+        return
+      }
+    
+
     let image
     if (!req.file){
         image = '/images/default.jpg'
@@ -37,7 +50,6 @@ router.post('/myPlaces/:placesAddedId/edit',uploader.single("image"), (req, res,
 //DELETE
 router.post('/myPlaces/:placesAddedId/delete', (req, res, next) => {
     const {placesAddedId} = req.params
-    console.log(placesAddedId)
     Places.findByIdAndDelete(placesAddedId)
     .then(() => {
         res.redirect('/profile')
