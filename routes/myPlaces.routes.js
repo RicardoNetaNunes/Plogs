@@ -8,7 +8,7 @@ const router = require("express").Router();
 
 //EDIT
 router.get('/myPlaces/:placesAddedId/edit', (req, res, next) => {
-    const {placesAddedId} = req.params 
+    const {placesAddedId} = req.params;
     res.render('places/edit.hbs', {placesAddedId})
   });
 

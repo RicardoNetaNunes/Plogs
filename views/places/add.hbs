@@ -67,7 +67,16 @@ L.control.layers(baseLayers).addTo(map);
   
 map.on('click', function(e) {
 	//document.getElementsByClassName('coordinates')[0].innerHTML = 'lat: ' + e.latlng.lat +' --- ' + 'long: ' + e.latlng.lng;
-    L.marker([e.latlng.lat,e.latlng.lng]).addTo(map);
+   var redIcon = new L.Icon({
+	iconUrl: '/images/marker-icon-red.png',
+	shadowUrl: '/images/marker-shadow.png',
+	iconSize: [25, 41],
+	iconAnchor: [12, 41],
+	popupAnchor: [1, -34],
+	shadowSize: [41, 41]
+});
+   
+    L.marker([e.latlng.lat,e.latlng.lng], {icon: redIcon}).addTo(map);
     console.log('lat: ' + e.latlng.lat, 'long: ' + e.latlng.lng);
 document.querySelector("#latitude").value=e.latlng.lat;
 document.querySelector("#longitude").value=e.latlng.lng;

@@ -19,12 +19,7 @@
 	attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Tiles style by <a href="https://www.hotosm.org/" target="_blank">Humanitarian OpenStreetMap Team</a> hosted by <a href="https://openstreetmap.fr/" target="_blank">OpenStreetMap France</a>'
 });
 OpenStreetMap_HOT.addTo(map);
-//maptiler street
-var maptillerStreet = L.tileLayer('https://api.maptiler.com/maps/streets/{z}/{x}/{y}.png?key=3l8GFPZwCEHEiHYwjZnb', {
-	maxZoom: 19,
-	attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
-});
-//maptillerStreet.addTo(map);
+
 //Google SatMap
 var googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{
     maxZoom: 20,
@@ -48,9 +43,7 @@ var baseLayers = {
     "StreetTiller": maptillerStreet
     
 };
-var overlays = {
-	"Beach": beachMarker,
-};
+
 L.control.layers(baseLayers).addTo(map);
 </script>
 <script>
@@ -61,7 +54,17 @@ L.control.layers(baseLayers).addTo(map);
   
 map.on('click', function(e) {
 	//document.getElementsByClassName('coordinates')[0].innerHTML = 'lat: ' + e.latlng.lat +' --- ' + 'long: ' + e.latlng.lng;
-    L.marker([e.latlng.lat,e.latlng.lng]).addTo(map);
+    var redIcon = new L.Icon({
+	iconUrl: '/images/marker-icon-red.png',
+	shadowUrl: '/images/marker-shadow.png',
+	iconSize: [25, 41],
+	iconAnchor: [12, 41],
+	popupAnchor: [1, -34],
+	shadowSize: [41, 41]
+});
+    
+    
+    L.marker([e.latlng.lat,e.latlng.lng], {icon: redIcon}).addTo(map);
     console.log('lat: ' + e.latlng.lat, 'long: ' + e.latlng.lng);
 document.querySelector("#latitude").value=e.latlng.lat;
 document.querySelector("#longitude").value=e.latlng.lng;
