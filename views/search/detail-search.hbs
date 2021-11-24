@@ -10,6 +10,17 @@
   <textarea class="list-group-item">Comments: {{{place.opinions}}}</textarea>
 </div>
 </div>
+
+
+<div id="comments">
+      <p>Comments:</p>
+            {{#each place.opinions}}
+            <p>{{this.createdAt}}<br><br></p>
+            <p>"{{this.opinions}}"<br><br></p>
+            {{/each}}
+            </div>
+
+
 <br>
 <button href="/places/opinions/{{{place._id}}}" class="btn-outline-secondary">Share my opinion</button>
 
