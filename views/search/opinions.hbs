@@ -5,21 +5,16 @@
 
 <div class="createForm">
 <form method="POST" action="/places/opinions/{{{place._id}}}">
- <div class="input-group">
-  <span class="input-group-text">Your opinions:</span>
+ <div class="input-group box">
+  
   <textarea name="opinions" value="opinions" class="form-control" aria-label="With textarea"></textarea>
 </div>
 <div class="d-grid gap-2">
    
-  <button class="btn btn-primary myButton" type="submit" href="/places/details/{{{place._id}}}"> Add your opinion</button>
+{{!--   <button class="btn btn-primary myButton" type="submit" href="/places/details/{{{place._id}}}"> Add your opinion</button> --}}
+  <button class="btn btn-primary myButton" type="submit"><a class="letter1" href="/places/details/{{{place._id}}}">Add your opinion</a> </button>
 </div>
 </form>
-
-
-
-
-
-
 
 
 
