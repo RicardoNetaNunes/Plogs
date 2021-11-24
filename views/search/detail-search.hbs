@@ -1,11 +1,10 @@
-<a href="/search"><img src="/images/back.png" alt="back" class="back"></a>
-<h3>Place Details</h3>
+<a href="/profile"><img src="/images/back.png" alt="back" class="back"></a>
+<h5>Place Details - {{place.place}}</h5>
 <div class="text-center">
 <img class="rounded img-fluid detailsImg" src={{place.image}} alt="image of the place">
-<br>
-<br>
-<div class="list-group detail">
-   <label for="exampleDataList" class="form-label typedetail">Type of place:</label>   
+</div>
+{{!-- <div class="list-group detail">
+   <span class="list-group-item">Type of place:</span>   
   <li class="list-group-item"> {{{place.place}}}</li>
   <textarea class="list-group-item detail">Description:
          {{{place.description}}}</textarea>
@@ -14,16 +13,43 @@
       
             {{this.createdAt}}
             {{this.opinions}}
-       --------------------------------------------------------------------------------------------------------     
+<div class="slimScrollBar" style="width: 3px; position: absolute; top: 11px; opacity: 0.4; display: none; border-top-left-radius: 7px; border-top-right-radius: 7px; border-bottom-right-radius: 7px; border-bottom-left-radius: 7px; z-index: 99; left: 1px; height: 209.5734126984127px; background: rgb(134, 134, 134);"></div><div class="slimScrollRail" style="width: 3px; height: 100%; position: absolute; top: 0px; display: none; border-top-left-radius: 7px; border-top-right-radius: 7px; border-bottom-right-radius: 7px; border-bottom-left-radius: 7px; opacity: 0.3; z-index: 90; left: 1px; background: rgb(51, 51, 51);"></div></div>
             {{/each}}
          </textarea>
+</div> --}}
+<h5 class="reviewstitle">Description:</h5>
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-8">
+            <div class="card p-3 mb-2">
+               <div class="d-flex flex-column">
+                  <p class="comment-text"> {{{place.description}}}</p>
+               </div>
+            </div>
+        </div>
+    </div>
+    
+<h5 class="reviewstitle">Reviews:</h5>
+    <div class="row d-flex justify-content-center">
+        
+        <div class="col-md-8">
+            {{#each place.opinions}}
+            <div class="card p-3 mb-2">
+               <div class="d-flex flex-column">
+                  <p class="comment-text"> {{this.opinions}}</p>
+               {{!--  <div class="d-flex justify-content-between">
+                  <div class="d-flex flex-row"> <span>{{this.createdAt}}</span> </div>
+                </div> --}}
+            </div>
+        </div>
+        {{/each}}
+    </div>
+ </div>
+ 
+<div class="center">
+<button class="btn-outline-secondary btndets" style="align-items: center;" type="submit"><a class="letter" href="/places/opinions/{{{place._id}}}">Share my opinion</a></button>
 </div>
-</div>
-
 <br>
-{{!-- <button href="/places/opinions/{{{place._id}}}" type="submit" class="btn-outline-secondary">Share my opinion</button> --}}
-<button class="btn-outline-secondary" type="submit"><a class="letter" href="/places/opinions/{{{place._id}}}">Share my opinion</a></button>
-
+ 
  
 <footer>
       <!-- Home -->

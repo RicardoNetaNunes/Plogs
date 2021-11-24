@@ -1,4 +1,4 @@
-<a href="/places/add"><img src="/images/back.png" alt="back" class="back"></a>
+<a href="/search"><img src="/images/back.png" alt="back" class="back"></a>
 <header>
 <img src="/images/nanologo.jpg" alt="logo" class="logo">
 </header>
@@ -6,11 +6,6 @@
 <div class="d-grid gap-2 buttonBox">
     <a href="/profile/logout" class="btn myButton" type="button">Log out</a>
 </div>
-<form action="/profile/delete" method="POST">
-<div class="d-grid gap-2 buttonBox">
-  <button class="btn myButton" type="submit">Delete account</button>
-</div>
-</form>
 <br>
 <div data-spy="scroll" class="table-responsive">
 <table class="table">
@@ -26,19 +21,28 @@
       <td>{{{this.place}}}</td>
       <td>{{this.description}}</td>
       <td>
+
     <form action="/myPlaces/{{this._id}}/delete" method="POST">
    <button type="submit" class="btn btn-outline-secondary delbtn bi bi-trash-fill"></i></button>
 </form>
 <form action="/myPlaces/{{this._id}}/edit" method="GET">
   <button type="submit" class="btn btn-outline-secondary delbtn bi bi-pencil-fill"></button>
 </form>
-
+  <form action="/places/details/{{this._id}}/" method="GET">
+   <button type="submit" class="btn btn-outline-secondary delbtn bi bi-eye-fill"></i></button>
+</form>
       </td>
     </tr>
 {{/each}}
   </tbody>
 </table>
 </div>
+<form action="/profile/delete" method="POST">
+<div class="d-grid gap-2 buttonBox">
+  <button class="btn myButton" type="submit">Delete account</button>
+</div>
+</form>
+<br>
 <footer>
       <!-- Home -->
       <a href="/"><img src="/images/home.png" alt="home" class="home"></a>

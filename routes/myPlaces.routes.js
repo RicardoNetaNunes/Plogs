@@ -32,7 +32,7 @@ router.post('/myPlaces/:placesAddedId/edit',uploader.single("image"), (req, res,
 
     let image
     if (!req.file){
-        image = '/images/default.jpg'
+        image = '/images/default.png'
     }
     else {
         image = req.file.path
