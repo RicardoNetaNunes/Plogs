@@ -4,10 +4,12 @@
 <img class="rounded img-fluid detailsImg" src={{place.image}} alt="image of the place">
 <br>
 <br>
-<div class="list-group">
-  <li class="list-group-item">Place type: {{{place.place}}}</li>
-  <textarea class="list-group-item">Description: {{{place.description}}}</textarea>
-  <textarea class="list-group-item">Comments:
+<div class="list-group detail">
+   <label for="exampleDataList" class="form-label typedetail">Type of place:</label>   
+  <li class="list-group-item"> {{{place.place}}}</li>
+  <textarea class="list-group-item detail">Description:
+         {{{place.description}}}</textarea>
+  <textarea class="list-group-item opinions detail">    Opinions:
          {{#each place.opinions}}
             {{this.createdAt}}
             "{{this.opinions}}"
@@ -16,6 +18,9 @@
          </textarea>
 </div>
 </div>
+
+
+
 
 
 

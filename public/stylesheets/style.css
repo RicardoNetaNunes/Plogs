@@ -138,8 +138,7 @@ a:hover {
 .detailsImg {
   margin-top: 20px;
   margin-bottom: 20px;
-  max-width: 300px;
-  max-height: 350px;
+  max-height: 200px;
   width: auto;
   height: auto;
 }
@@ -161,4 +160,16 @@ a:hover {
 }
 .box {
   height: 250px;
+}
+.opinions {
+  height: 150px;
+  padding: 1.5px;
+}
+
+.detail {
+  font-weight: bolder;
+}
+
+.typedetail {
+  text-align: left;
 }
