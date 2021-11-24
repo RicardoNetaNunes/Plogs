@@ -19,7 +19,7 @@ router.post('/myPlaces/:placesAddedId/edit', (req, res, next) => {
         res.redirect('/profile')
     })
     .catch(() => {
-        next('Place not edited') //it's coming here :(
+        next('Place not edited')
     })
   });
   

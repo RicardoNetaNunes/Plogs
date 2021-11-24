@@ -22,9 +22,7 @@ router.get('/places/details/:placeId',  (req, res, next) => {
   Places.findById(placeId)
   .populate('opinions')
   .then((place) => {
-      console.log('uno', place)
       res.render('search/detail-search.hbs', {place})
-
   })
   
   .catch(() => {
@@ -38,7 +36,6 @@ router.get('/places/list',  (req, res, next) => {
   res.render('search/list-view.hbs', {places})  
 })
 .catch(() => {
-
 })
 
 })
