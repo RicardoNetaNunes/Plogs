@@ -11,7 +11,7 @@
 <script>
 	const map = L.map('mapid').setView([47.3769, -8.5417], 3);
 	
-//leaflet map
+//leaflet map -safeguard
 	var OpenStreetMap_HOT = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
 	maxZoom: 19,
 	attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Tiles style by <a href="https://www.hotosm.org/" target="_blank">Humanitarian OpenStreetMap Team</a> hosted by <a href="https://openstreetmap.fr/" target="_blank">OpenStreetMap France</a>'
@@ -34,27 +34,6 @@ googleStreets.addTo(map)
 
 
 
-
-var myIcon = L.icon({
-    iconUrl: '/images/42578_adobespark.png',
-    iconSize: [50, 50],
-    iconAnchor: [25, 16]
-});
-
-
-/*
-let normalMarker =  L.marker([40.3925, -3.6984]).addTo(map)
-let normalPopUp= normalMarker.bindPopup('<a href="http://localhost:3000/places">Ironhack</a><br> Dog friendly bootcamp.'+ normalMarker.getLatLng())
-normalPopUp.addTo(map)
-*/
-
-/*
-let beachMarker = L.marker([39.7117, -8.1238], {icon: myIcon, draggable:true }).addTo(map)
-let popup = beachMarker.bindPopup('<a href="http://localhost:3000/places">Dog Park</a><br> Dog friendly.' + beachMarker.getLatLng())
-popup.addTo(map); */
-
-//console.log(beachMarker.toGeoJSON());
-
 let ironBootcamps = L.geoJSON(ironhack).addTo(map);
 let ironPopUp= ironBootcamps.bindPopup('<a href="https://www.ironhack.com/">Ironhack</a><br> Dog friendly bootcamp.')
 ironPopUp.addTo(map)
@@ -64,20 +43,13 @@ var baseLayers = {
     "SatMaps": googleSat
 	
 };
-/*
+
 var overlays = {
-    "Marker": normalMarker,
 	"Ironhack": ironBootcamps
-
 };
-*/
 
+L.control.layers(baseLayers, overlays).addTo(map);
 
-L.control.layers(baseLayers).addTo(map);
-
-/*let beachMarker = L.marker([39.7117, -8.1238], {icon: myIcon, draggable:true }).addTo(map)
-let popup = beachMarker.bindPopup('<a href="http://localhost:3000/places">Dog Park</a><br> Dog friendly.' + beachMarker.getLatLng())
-popup.addTo(map);*/
 
 
 
@@ -92,7 +64,7 @@ popup.addTo(map);
 </script>
 {{/each}}
 
-<a href=""></a>
+
 
 <script>
 	console.log( {{{loc}}} ) // prints   [51.505, -0.09]
