@@ -9,7 +9,7 @@
 
 
 <script>
-	const map = L.map('mapid').setView([47.3769, -8.5417], 3);
+	const map = L.map('mapid').setView([47.3769, -8.5417], 4);
 	
 //leaflet map -safeguard
 	var OpenStreetMap_HOT = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
@@ -58,6 +58,8 @@ L.control.layers(baseLayers, overlays).addTo(map);
 {{#each places }}
 {{log this}}
 <script>
+
+    
 var marker = L.marker([{{{this.latitude}}}, {{{this.longitude}}}]).addTo(map);
 marker.bindPopup('{{{this.place}}}<br> <a href="/places/details/{{{this._id}}}">Details</a>')
 popup.addTo(map);

@@ -7,18 +7,17 @@
 <div class="list-group">
   <li class="list-group-item">Place type: {{{place.place}}}</li>
   <textarea class="list-group-item">Description: {{{place.description}}}</textarea>
-  <textarea class="list-group-item">Comments: {{{place.opinions}}}</textarea>
-</div>
-</div>
-
-
-<div id="comments">
-      <p>Comments:</p>
-            {{#each place.opinions}}
-            <p>{{this.createdAt}}<br><br></p>
-            <p>"{{this.opinions}}"<br><br></p>
+  <textarea class="list-group-item">Comments:
+         {{#each place.opinions}}
+            {{this.createdAt}}
+            "{{this.opinions}}"
+       --------------------------------------------------------------------------------------------------------     
             {{/each}}
-            </div>
+         </textarea>
+</div>
+</div>
+
+
 
 
 <br>
