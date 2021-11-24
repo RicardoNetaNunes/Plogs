@@ -22,26 +22,38 @@ router.post('/signup', (req, res, next) => {
     return;
 }
  //confirm if the username is already in use
-  const user = req.myProperty
+ /* const user = req.myProperty
   User.find ({user})
-    .then((userResponse) => {
+    .then(() => {
       res.render('auth/signup.hbs', {error: 'Username already in use.'});
       return;
     })
     .catch(() => {
       next()
     })
- 
+ */
     // Encryption
     let salt = bcrypt.genSaltSync(10);
     let hash = bcrypt.hashSync(password, salt);
-    User.create({username, email, password: hash})
-      .then(() => {
-          res.redirect('/') //just after log in
+
+    User.findOne({username})
+      .then((user) =>{
+        if (!user){
+          User.create({username, email, password: hash})
+          .then(() => {
+              res.redirect('/') //just after log in
+          })
+          .catch((err) => {
+            next(err)
+          })
+        
+        }
+        else {
+          return res.render('auth/signup.hbs', {error: 'Username already in use.'});
+        }
       })
-      .catch((err) => {
-        next(err)
-      })
+    
+      
 })
 
 // Handles GET requests to /login and shows a form
