@@ -3,9 +3,9 @@
 </script>
 <h5>Edit Dog Friendly Place</h5>
 <br>
+{{!-- MAP --}}
 <div class="create">
 <div class="createForm">
-
 <script src="/app.js"></script>
 <div  id="mapAdd"></div>
  <br>
@@ -53,15 +53,9 @@ var overlays = {
 };
 L.control.layers(baseLayers).addTo(map);
 </script>
-
-
 <script>
 	console.log( {{{loc}}} ) // prints   [51.505, -0.09]
 </script>
-
-
-
-
 
 <script id="select-location">
   
@@ -72,15 +66,16 @@ map.on('click', function(e) {
 document.querySelector("#latitude").value=e.latlng.lat;
 document.querySelector("#longitude").value=e.latlng.lng;
 } );
-
 </script>
 <br>
+
 <h6>Pick the location on the map</h6>
 
 <div class="create">
 <div class="createForm">
-  
-<form method="POST" action="/places/add" enctype="multipart/form-data">
+{{!-- {{#each places}} --}}
+<form method="POST" action="/myPlaces/{{this._id}}/edit" enctype="multipart/form-data">
+   
     <div class="input-group input-group-sm mb-3">
   
   <input type="hidden" id="latitude" name="latitude" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" >

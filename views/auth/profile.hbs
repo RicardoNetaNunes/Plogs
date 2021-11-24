@@ -8,10 +8,11 @@
 </div>
 <form action="/profile/delete" method="POST">
 <div class="d-grid gap-2 buttonBox">
-  <button class="btn myButton delbtn" type="submit">Delete account</button>
+  <button class="btn myButton" type="submit">Delete account</button>
 </div>
 </form>
-<div data-spy="scroll" data-target="#navbar-example2" data-offset="0">
+<br>
+<div data-spy="scroll" class="table-responsive">
 <table class="table">
   <thead>
     <tr>
@@ -25,12 +26,13 @@
       <td>{{{this.place}}}</td>
       <td>{{this.description}}</td>
       <td>
-<form action="/myPlaces/{{this._id}}/edit" method="GET">
-  <button href="/profile/editplace" type="submit" class="btn btn-outline-secondary bi bi-pencil-fill"> edit</button>
+    <form action="/myPlaces/{{this._id}}/delete" method="POST">
+   <button type="submit" class="btn btn-outline-secondary delbtn bi bi-trash-fill"></i></button>
 </form>
-<form action="/myPlaces/{{this._id}}/delete" method="POST">
-   <button href="/myplaces/delete" type="submit" class="btn btn-outline-secondary bi bi-trash-fill"></i> delete</button>
+<form action="/myPlaces/edit" method="GET">
+  <button type="submit" class="btn btn-outline-secondary delbtn bi bi-pencil-fill"></button>
 </form>
+
       </td>
     </tr>
 {{/each}}

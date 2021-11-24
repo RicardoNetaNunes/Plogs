@@ -117,10 +117,34 @@ a:hover {
 .btn-outline-secondary {
   color:black;
   border-radius: 5px;
-  border-color: transparent;
+  border-color: #5b4641;
+  background-color: #f8edd9;
 }
 .btn-outline-secondary:hover {
   background-color: #5b4641;
   border-color: white;
 }
-
+.detailsImg {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  max-width: 300px;
+  max-height: 350px;
+  width: auto;
+  height: auto;
+}
+.list-group-item {
+  background-color: #f8edd9;
+  text-align: left;
+  border-color: #5b4641;
+}
+.delbtn {
+  background-color: transparent;
+  border-color: transparent;
+  float: right;
+  margin-left: 5px;
+}
+.table {
+  vertical-align: middle;
+  height: 10px;
+  line-height: 10px ;
+}
