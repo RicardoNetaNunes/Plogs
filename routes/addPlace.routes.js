@@ -33,6 +33,10 @@ router.post('/places/add', uploader.single("image"), (req, res, next) => {
     res.render('places/add.hbs', {error: 'Please select the type of place'});
     return
   }
+  if(!description) {
+    res.render('places/add.hbs', {error: 'Please add a small description'});
+    return
+  }
 
   let image
   if (!req.file){
