@@ -4,6 +4,11 @@ const User = require("../models/User.model")
 const Opinions = require("../models/Opinions.model")
 
 
+router.get('/aboutus', (req, res, next) => {
+  res.render('about.hbs')
+})
+
+
 
 router.get('/search', (req, res, next) => {
    Places.find().then((places) => {

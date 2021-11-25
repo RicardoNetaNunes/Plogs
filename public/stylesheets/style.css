@@ -190,3 +190,11 @@ a:hover {
   margin-top: 20px;
   text-align: center;
 }
+.aboutus {
+  text-decoration: none;
+  color: white;
+  padding-top: 5px;
+}
+.aboutNav {
+height: 30px;
+}
