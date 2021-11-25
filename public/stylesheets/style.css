@@ -198,3 +198,6 @@ a:hover {
 .aboutNav {
 height: 30px;
 }
+.about {
+  border-radius: 15px;
+}
