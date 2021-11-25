@@ -1,6 +1,6 @@
 # Plogs
 
-WEBSITE URL
+[Deploy Link](https://plogs-for-dogs.herokuapp.com/)
 
 ## Description
 
@@ -125,7 +125,6 @@ The url to our repository and to our deployed project
 
 [Repository Link](https://github.com/cruzines/Plogs)
 
-[Deploy Link](http://heroku.com)
 
 ### Slides
 
