@@ -41,7 +41,7 @@ router.post('/signup', (req, res, next) => {
         if (!user){
           User.create({username, email, password: hash})
           .then(() => {
-              res.redirect('/') //just after log in
+              res.redirect('/login') //just after log in
           })
           .catch((err) => {
             next(err)
