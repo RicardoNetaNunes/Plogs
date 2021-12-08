@@ -1,0 +1,124 @@
+<h1>New Places</h1>
+
+
+
+<script src="/app.js"></script>
+<div  id="mapid"></div>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+ <br>
+ <div class="leaflet-control coordinates"></div>
+
+ <script>
+ const map =  L.map('mapid').setView([47.3769, -8.5417], 4);	
+//leaflet map -- OpenStreet -- safeguard
+	var OpenStreetMap_HOT = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+	maxZoom: 19,
+	attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Tiles style by <a href="https://www.hotosm.org/" target="_blank">Humanitarian OpenStreetMap Team</a> hosted by <a href="https://openstreetmap.fr/" target="_blank">OpenStreetMap France</a>'
+});
+OpenStreetMap_HOT.addTo(map);
+
+//maptiler street
+
+var maptillerStreet = L.tileLayer('https://api.maptiler.com/maps/streets/{z}/{x}/{y}.png?key=3l8GFPZwCEHEiHYwjZnb', {
+	maxZoom: 19,
+	attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
+});
+//maptillerStreet.addTo(map);
+
+//Google SatMap
+var googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{
+    maxZoom: 20,
+    subdomains:['mt0','mt1','mt2','mt3']
+});
+//googleSat.addTo(map)
+
+//Google StreetMap	
+var googleStreets = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',{
+    maxZoom: 20,
+    subdomains:['mt0','mt1','mt2','mt3']
+});
+googleStreets.addTo(map)
+
+
+
+
+var myIcon = L.icon({
+    iconUrl: '/images/42578_adobespark.png',
+    iconSize: [50, 50]
+});
+
+
+let beachMarker = L.marker([39.7117, -8.1238], {icon: myIcon, draggable:true }).addTo(map)
+let popup = beachMarker.bindPopup('<a href="http://localhost:3000/places">Dog Park</a><br> Dog friendly.' + beachMarker.getLatLng())
+popup.addTo(map);
+
+//console.log(beachMarker.toGeoJSON());
+
+
+
+var baseLayers = {
+    "StreetMaps": googleStreets,
+    "SatMaps": googleSat,
+    "StreetTiller": maptillerStreet
+    
+};
+
+var overlays = {
+	"Beach": beachMarker,
+};
+
+L.control.layers(baseLayers, overlays).addTo(map);
+
+
+
+
+
+
+
+map.on('click', function(e) {
+	document.getElementsByClassName('coordinates')[0].innerHTML = 'lat: ' + e.latlng.lat +' --- ' + 'long: ' + e.latlng.lng;
+    console.log('lat: ' + e.latlng.lat, 'long: ' + e.latlng.lng);
+} );
+
+
+
+map.on('click', function(e) {
+  console.log(e.latlng.lat,e.latlng.lng);
+
+  L.marker([e.latlng.lat,e.latlng.lng]).addTo(map);
+  
+   
+});
+
+ </script>
+
+ <div class="create">
+<div class="createForm">
+  <h2>Add a New Dog Friendly Place</h2>
+<form method="POST" action="/search">
+  <div class="mb-3">
+    <label class="form-label" >Latitude</label>
+    <input name="latitude">
+    <br>
+    <label class="form-label" >Longitude</label>
+    <input name="longitude">
+    <br>
+    <label class="form-label" >Type of Place</label>
+    <input name="type">
+    <br>
+    <label class="form-label" >Small Description</label>
+    <input name="type">
+    <br>
+    <button class="btn btn-primary buttonC" type="submit">SUBMIT</button>
+  </div>
+</form>
+</div>
+</div>
+<footer>
+      <!-- Home -->
+      <a href="/"><img src="/images/home.png" alt="home" class="home"></a>
+      <!-- Add -->
+      <a href="/places/add"><img src="/images/plus.png" alt="add" class="plus"></a>
+      <!-- Profile -->
+      <a href="/profile"><img src="/images/profile.png" alt="profile" class="profile"></a>
+</footer>
